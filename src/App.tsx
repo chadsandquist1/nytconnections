@@ -170,6 +170,15 @@ function App() {
   const handleReset = () => {
     loadPuzzle();
     setFeedback(null);
+    setShowCelebration(false);
+    setGameState(prev => ({
+      ...prev,
+      selectedWords: [],
+      solvedCategories: [],
+      mistakes: 0,
+      gameOver: false,
+      gameWon: false,
+    }));
   };
 
   if (loading) {
@@ -268,6 +277,13 @@ function App() {
             </button>
           </div>
         )}
+
+        {/* Reset button at bottom */}
+        <div className="reset-link-container">
+          <button onClick={handleReset} className="reset-link">
+            Reset Game
+          </button>
+        </div>
       </div>
 
       {/* Celebration overlay */}

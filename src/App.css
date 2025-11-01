@@ -242,6 +242,29 @@ h1 {
   transform: translateY(0);
 }
 
+/* Reset Link at Bottom */
+.reset-link-container {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.reset-link {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: color 0.2s ease;
+}
+
+.reset-link:hover {
+  color: var(--primary-color);
+}
+
 /* Error State */
 .error {
   background-color: #ffebee;
