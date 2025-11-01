@@ -5,6 +5,7 @@ import { WordCell } from './components/WordCell';
 import { CategoryRow } from './components/CategoryRow';
 import { MistakeTracker } from './components/MistakeTracker';
 import { GameControls } from './components/GameControls';
+import { CelebrationOverlay } from './components/CelebrationOverlay';
 import './App.css';
 
 function App() {
@@ -17,30 +18,65 @@ function App() {
     maxMistakes: 4,
     gameOver: false,
     gameWon: false,
+    completionMessage: 'Congratulations! 🎉',
+    title: 'Connections',
+    instructions: 'Find groups of four items that share something in common.',
+    theme: {
+      primaryColor: '#5a594e',
+      secondaryColor: '#000000',
+      accentColor: '#f9df6d',
+      backgroundImage: '',
+    },
   });
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
+  const [showCelebration, setShowCelebration] = useState(false);
 
   // Load puzzle from CSV on mount
   useEffect(() => {
     loadPuzzle();
   }, []);
 
+  // Apply theme when it changes
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--primary-color', gameState.theme.primaryColor);
+    root.style.setProperty('--secondary-color', gameState.theme.secondaryColor);
+    root.style.setProperty('--accent-color', gameState.theme.accentColor);
+
+    if (gameState.theme.backgroundImage) {
+      root.style.setProperty('--background-image', `url(${gameState.theme.backgroundImage})`);
+    } else {
+      root.style.setProperty('--background-image', 'none');
+    }
+  }, [gameState.theme]);
+
+  // Show celebration when game is won
+  useEffect(() => {
+    if (gameState.gameWon) {
+      setShowCelebration(true);
+    }
+  }, [gameState.gameWon]);
+
   const loadPuzzle = async () => {
     try {
       setLoading(true);
-      const categories = await loadPuzzleFromCSV('/puzzle.csv');
+      const puzzleData = await loadPuzzleFromCSV('/puzzle.csv');
 
       // Flatten all words and shuffle them
-      const allWords = categories.flatMap(cat => cat.words);
+      const allWords = puzzleData.categories.flatMap(cat => cat.words);
       const shuffledWords = shuffleArray(allWords);
 
       setGameState(prev => ({
         ...prev,
-        categories,
+        categories: puzzleData.categories,
         wordBank: shuffledWords,
+        completionMessage: puzzleData.completionMessage,
+        title: puzzleData.title,
+        instructions: puzzleData.instructions,
+        theme: puzzleData.theme,
       }));
       setLoading(false);
     } catch (err) {
@@ -168,8 +204,8 @@ function App() {
   return (
     <div className="app">
       <div className="container">
-        <h1>Connections</h1>
-        <p className="instructions">Find groups of four items that share something in common.</p>
+        <h1>{gameState.title}</h1>
+        <p className="instructions">{gameState.instructions}</p>
 
         {/* Solved categories */}
         <div className="solved-categories">
@@ -225,7 +261,7 @@ function App() {
         {/* Win message */}
         {gameState.gameWon && (
           <div className="game-won">
-            <h2>Congratulations! 🎉</h2>
+            <h2>{gameState.completionMessage}</h2>
             <p>You've solved all the connections!</p>
             <button onClick={handleReset} className="reset-btn">
               Play Again
@@ -233,6 +269,12 @@ function App() {
           </div>
         )}
       </div>
+
+      {/* Celebration overlay */}
+      <CelebrationOverlay
+        show={showCelebration}
+        onComplete={() => setShowCelebration(false)}
+      />
     </div>
   );
 }

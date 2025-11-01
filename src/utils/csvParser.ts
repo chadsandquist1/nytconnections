@@ -1,6 +1,6 @@
-import { Category } from '../types';
+import { Category, PuzzleData, Theme } from '../types';
 
-export async function loadPuzzleFromCSV(csvPath: string): Promise<Category[]> {
+export async function loadPuzzleFromCSV(csvPath: string): Promise<PuzzleData> {
   try {
     const response = await fetch(csvPath);
     if (!response.ok) {
@@ -8,20 +8,71 @@ export async function loadPuzzleFromCSV(csvPath: string): Promise<Category[]> {
     }
 
     const csvText = await response.text();
-    console.log('CSV loaded, text length:', csvText.length);
 
     const lines = csvText.trim().split('\n');
-    console.log('Total lines:', lines.length);
-
     const categories: Category[] = [];
+    let completionMessage = 'Congratulations! 🎉';
+    let title = 'Connections';
+    let instructions = 'Find groups of four items that share something in common.';
+    let theme: Theme = {
+      primaryColor: '#5a594e',
+      secondaryColor: '#000000',
+      accentColor: '#f9df6d',
+      backgroundImage: '',
+    };
+    let startIndex = 1; // Default: skip header row
 
-    // Skip header row
-    for (let i = 1; i < lines.length; i++) {
+    // Check for optional rows (CompletionMessage and Theme)
+    for (let i = 1; i < lines.length && i < 3; i++) {
+      const line = lines[i].trim();
+
+      if (line.startsWith('CompletionMessage,')) {
+        const parts = line.split(',').map(part => part.trim());
+
+        if (parts.length === 2) {
+          // Only message provided
+          completionMessage = parts[1];
+        } else if (parts.length === 3) {
+          // Message and title provided
+          completionMessage = parts[1];
+          title = parts[2];
+        } else if (parts.length >= 4) {
+          // Message, title, and instructions provided
+          if (parts.length === 4) {
+            completionMessage = parts[1];
+            title = parts[2];
+            instructions = parts[3];
+          } else {
+            // Join all middle parts as the message
+            completionMessage = parts.slice(1, parts.length - 2).join(', ');
+            title = parts[parts.length - 2];
+            instructions = parts[parts.length - 1];
+          }
+        }
+
+        startIndex = i + 1;
+      } else if (line.startsWith('Theme,')) {
+        const parts = line.split(',').map(part => part.trim());
+
+        if (parts.length >= 5) {
+          theme = {
+            primaryColor: parts[1] || theme.primaryColor,
+            secondaryColor: parts[2] || theme.secondaryColor,
+            accentColor: parts[3] || theme.accentColor,
+            backgroundImage: parts[4] || theme.backgroundImage,
+          };
+        }
+
+        startIndex = i + 1;
+      }
+    }
+
+    // Parse category rows
+    for (let i = startIndex; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) continue;
 
       const parts = line.split(',').map(part => part.trim());
-      console.log(`Line ${i}: ${parts.length} parts -`, parts);
 
       if (parts.length >= 6) {
         const category: Category = {
@@ -30,19 +81,20 @@ export async function loadPuzzleFromCSV(csvPath: string): Promise<Category[]> {
           difficulty: parseInt(parts[5], 10) || 1,
         };
         categories.push(category);
-        console.log('Added category:', category.name);
-      } else {
-        console.warn(`Line ${i} has ${parts.length} parts, expected 6`);
       }
     }
-
-    console.log('Total categories parsed:', categories.length);
 
     if (categories.length !== 4) {
       throw new Error(`Expected 4 categories, but found ${categories.length}`);
     }
 
-    return categories;
+    return {
+      categories,
+      completionMessage,
+      title,
+      instructions,
+      theme,
+    };
   } catch (error) {
     console.error('Error loading puzzle from CSV:', error);
     throw error;

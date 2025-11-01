@@ -4,6 +4,21 @@ export interface Category {
   difficulty: number;
 }
 
+export interface Theme {
+  primaryColor: string;
+  secondaryColor: string;
+  accentColor: string;
+  backgroundImage: string;
+}
+
+export interface PuzzleData {
+  categories: Category[];
+  completionMessage: string;
+  title: string;
+  instructions: string;
+  theme: Theme;
+}
+
 export interface GameState {
   categories: Category[];
   wordBank: string[];
@@ -13,6 +28,10 @@ export interface GameState {
   maxMistakes: number;
   gameOver: boolean;
   gameWon: boolean;
+  completionMessage: string;
+  title: string;
+  instructions: string;
+  theme: Theme;
 }
 
 export const DIFFICULTY_COLORS = {

@@ -13,6 +13,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Theme CSS Variables */
+  --primary-color: #5a594e;
+  --secondary-color: #000000;
+  --accent-color: #f9df6d;
+  --background-image: none;
 }
 
 * {
@@ -28,6 +34,11 @@ body {
   align-items: center;
   min-height: 100vh;
   background-color: #f7f7f7;
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 button {
