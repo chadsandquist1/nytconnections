@@ -1,0 +1,281 @@
+.app {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.container {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #000;
+  letter-spacing: 0.05em;
+}
+
+.instructions {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+/* Solved Categories */
+.solved-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.category-row {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.category-words {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Feedback */
+.feedback {
+  text-align: center;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Word Grid */
+.word-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.word-cell {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 8px;
+  background-color: #efefe6;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  transition: all 0.2s ease;
+  color: #000;
+  letter-spacing: 0.03em;
+}
+
+.word-cell:hover:not(:disabled) {
+  background-color: #5a594e;
+  color: white;
+  transform: scale(1.05);
+}
+
+.word-cell.selected {
+  background-color: #5a594e;
+  color: white;
+}
+
+.word-cell:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Mistake Tracker */
+.mistake-tracker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.mistake-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.mistake-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.mistake-dot.remaining {
+  background-color: #5a594e;
+}
+
+.mistake-dot.used {
+  background-color: #e0e0e0;
+}
+
+/* Game Controls */
+.game-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.control-btn {
+  padding: 12px 24px;
+  border: 2px solid #000;
+  border-radius: 24px;
+  background-color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  text-transform: capitalize;
+}
+
+.control-btn:hover:not(:disabled) {
+  background-color: #000;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.control-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn {
+  background-color: #000;
+  color: white;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #333;
+}
+
+.submit-btn:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #666;
+}
+
+/* Game Over / Win Messages */
+.game-over,
+.game-won {
+  text-align: center;
+  padding: 30px;
+  animation: slideIn 0.5s ease-out;
+}
+
+.game-over h2,
+.game-won h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.game-over p,
+.game-won p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.reset-btn {
+  padding: 12px 30px;
+  border: 2px solid #000;
+  border-radius: 24px;
+  background-color: #000;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
+}
+
+/* Error State */
+.error {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .word-grid {
+    gap: 8px;
+  }
+
+  .word-cell {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .game-controls {
+    flex-direction: column;
+  }
+
+  .control-btn {
+    width: 100%;
+  }
+}
