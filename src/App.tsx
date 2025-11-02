@@ -65,6 +65,33 @@ function App() {
       setLoading(true);
       const puzzleData = await loadPuzzleFromCSV('/puzzle.csv');
 
+      // Load theme from theme.json if it exists
+      let theme = puzzleData.theme;
+      try {
+        const themeResponse = await fetch('/theme.json');
+        if (themeResponse.ok) {
+          theme = await themeResponse.json();
+        }
+      } catch (err) {
+        console.log('No theme.json found, using CSV theme');
+      }
+
+      // Load messages from messages.json if it exists
+      let completionMessage = puzzleData.completionMessage;
+      let title = puzzleData.title;
+      let instructions = puzzleData.instructions;
+      try {
+        const messagesResponse = await fetch('/messages.json');
+        if (messagesResponse.ok) {
+          const messages = await messagesResponse.json();
+          if (messages.completionMessage) completionMessage = messages.completionMessage;
+          if (messages.title) title = messages.title;
+          if (messages.instructions) instructions = messages.instructions;
+        }
+      } catch (err) {
+        console.log('No messages.json found, using CSV messages');
+      }
+
       // Flatten all words and shuffle them
       const allWords = puzzleData.categories.flatMap(cat => cat.words);
       const shuffledWords = shuffleArray(allWords);
@@ -73,10 +100,10 @@ function App() {
         ...prev,
         categories: puzzleData.categories,
         wordBank: shuffledWords,
-        completionMessage: puzzleData.completionMessage,
-        title: puzzleData.title,
-        instructions: puzzleData.instructions,
-        theme: puzzleData.theme,
+        completionMessage,
+        title,
+        instructions,
+        theme,
         selectedWords: [],
         solvedCategories: [],
         mistakes: 0,
