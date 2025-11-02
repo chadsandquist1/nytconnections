@@ -306,7 +306,25 @@ function generateBodyweightWorkout() {
         ...getRandomExercises('arms', 1, recent, true) // Add some tricep dips
     ].filter(ex => ex); // Remove any undefined
 
-    const cardio = getRandomCardio(true);
+    // Bodyweight training always includes at least 15 minutes of walking
+    // Mandatory: 15-minute walk
+    const mandatoryWalk = {
+        name: "Outside Walk (Warmup)",
+        details: "15 minutes comfortable pace walking"
+    };
+
+    // Optional: Add 5 more minutes of other bodyweight cardio
+    const otherCardio = exerciseLibrary.cardio.bodyweight.filter(ex =>
+        !ex.name.toLowerCase().includes('walk') &&
+        !ex.name.toLowerCase().includes('outside')
+    );
+    const additionalCardio = otherCardio[Math.floor(Math.random() * otherCardio.length)];
+    const shortCardio = {
+        name: additionalCardio.name,
+        details: "5 minutes " + additionalCardio.details.replace(/\d+\s*min(utes)?/, '5 min')
+    };
+
+    const cardio = [mandatoryWalk, shortCardio];
     saveRecentExercises([...cardio, ...strengthExercises]);
 
     return {
