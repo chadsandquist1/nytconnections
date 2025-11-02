@@ -132,16 +132,11 @@ describe('App', () => {
       expect(screen.getByText('Cow')).toBeInTheDocument();
     });
 
-    const wordGrid = screen.getByText('Cow').parentElement;
-    const initialOrder = wordGrid?.textContent;
-
     await user.click(screen.getByText('Shuffle'));
 
-    // Note: This test might be flaky due to randomness
-    // but in most cases the order will change
+    // Note: This test just verifies shuffle button works
+    // Actual order change is random and difficult to test deterministically
     await waitFor(() => {
-      const newOrder = wordGrid?.textContent;
-      // We just check that shuffle was clicked, actual order change is random
       expect(screen.getByText('Shuffle')).toBeInTheDocument();
     });
   });

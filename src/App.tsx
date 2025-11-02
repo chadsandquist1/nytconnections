@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Category, GameState } from './types';
+import { GameState } from './types';
 import { loadPuzzleFromCSV, shuffleArray } from './utils/csvParser';
 import { WordCell } from './components/WordCell';
 import { CategoryRow } from './components/CategoryRow';
@@ -307,6 +307,10 @@ function App() {
           <button onClick={handleReset} className="reset-link">
             Reset Game
           </button>
+          <span style={{ margin: '0 10px', color: '#ccc' }}>•</span>
+          <a href="/" className="reset-link">
+            Back to Home
+          </a>
         </div>
       </div>
 

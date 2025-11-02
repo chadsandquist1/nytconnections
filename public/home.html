@@ -54,39 +54,30 @@
         .app-card {
             padding: 30px;
             border-radius: 16px;
-            background: #ffffff;
-            color: #000000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
-            border: 3px solid #000000;
+            border: none;
         }
 
         .app-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            background: #000000;
-            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
         .app-card.game {
-            background: #ffffff;
-            border-color: #000000;
+            background: linear-gradient(135deg, #7A0019 0%, #FFCC33 100%);
         }
 
         .app-card.workout {
-            background: #ffffff;
-            border-color: #000000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .app-icon {
             font-size: 3rem;
             margin-bottom: 15px;
-            filter: grayscale(100%);
-        }
-
-        .app-card.game .app-icon {
-            filter: none;
         }
 
         .app-title {
@@ -131,21 +122,21 @@
                 <div class="app-icon">🧩</div>
                 <div class="app-title">Connections Game</div>
                 <div class="app-description">
-                    Custom Connections (NYT clone) - Find groups of four words that share something in common
+                    NYT Connections clone - Find groups of four words that share something in common
                 </div>
             </a>
 
             <a href="/workouts/" class="app-card workout">
-                <div class="app-icon">💪</div>
+                <div class="app-icon">🏋️</div>
                 <div class="app-title">Workout Program</div>
                 <div class="app-description">
-                    52-week fitness plan for a Personalized Fitness - 45 min workouts, 3× per week
+                    52-week fitness plan for Personalized Fitness - 45 min workouts, 3× per week
                 </div>
             </a>
         </div>
 
         <div class="footer">
-            Designed in Edina. Built with ❤️ by Chad with a heavy lift from Claude. Woop!
+            Built with ❤️ by Chad
         </div>
     </div>
 </body>

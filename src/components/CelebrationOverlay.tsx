@@ -25,8 +25,11 @@ interface BoundingBox {
   height: number;
 }
 
-const getRandomSize = (): number => {
-  return 150 + Math.random() * 200; // 150-350px
+const getRandomSize = (isMobile: boolean = false): number => {
+  if (isMobile) {
+    return 60 + Math.random() * 80; // 60-140px on mobile
+  }
+  return 80 + Math.random() * 120; // 80-200px on desktop
 };
 
 const getRandomAnimation = (): string => {
@@ -51,6 +54,25 @@ const calculateOverlapPercentage = (box1: BoundingBox, box2: BoundingBox): numbe
   return (overlapArea / smallerArea) * 100;
 };
 
+const isInCenterZone = (box: BoundingBox, viewportWidth: number, viewportHeight: number): boolean => {
+  // Define center zone as middle 30% of screen (35% to 65% on both axes)
+  const centerLeft = viewportWidth * 0.35;
+  const centerRight = viewportWidth * 0.65;
+  const centerTop = viewportHeight * 0.35;
+  const centerBottom = viewportHeight * 0.65;
+
+  // Check if the box overlaps with the center zone
+  const boxRight = box.left + box.width;
+  const boxBottom = box.top + box.height;
+
+  return !(
+    boxRight < centerLeft ||
+    box.left > centerRight ||
+    boxBottom < centerTop ||
+    box.top > centerBottom
+  );
+};
+
 const findNonOverlappingPosition = (
   size: number,
   existingBoxes: BoundingBox[],
@@ -65,6 +87,11 @@ const findNonOverlappingPosition = (
 
     const newBox: BoundingBox = { top, left, width: size, height: size };
 
+    // Check if position is in the center zone (avoid text area)
+    if (isInCenterZone(newBox, viewportWidth, viewportHeight)) {
+      continue;
+    }
+
     let maxOverlap = 0;
     for (const box of existingBoxes) {
       const overlap = calculateOverlapPercentage(newBox, box);
@@ -76,11 +103,18 @@ const findNonOverlappingPosition = (
     }
   }
 
-  // If we can't find a good position, return a random one anyway
-  return {
-    top: Math.random() * (viewportHeight - size),
-    left: Math.random() * (viewportWidth - size),
-  };
+  // If we can't find a good position, return a random one on the edges (avoid center)
+  const edgePositions = [
+    // Top edge
+    { top: Math.random() * (viewportHeight * 0.3), left: Math.random() * (viewportWidth - size) },
+    // Bottom edge
+    { top: viewportHeight * 0.7 + Math.random() * (viewportHeight * 0.3 - size), left: Math.random() * (viewportWidth - size) },
+    // Left edge
+    { top: Math.random() * (viewportHeight - size), left: Math.random() * (viewportWidth * 0.3) },
+    // Right edge
+    { top: Math.random() * (viewportHeight - size), left: viewportWidth * 0.7 + Math.random() * (viewportWidth * 0.3 - size) },
+  ];
+  return edgePositions[Math.floor(Math.random() * edgePositions.length)];
 };
 
 export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({ show, onComplete, duration = 6000 }) => {
@@ -92,11 +126,25 @@ export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({ show, on
         const response = await fetch('/celebration_overlay_gif.json');
         const data = await response.json();
 
+        const allGifs = data.celebration_overlays;
+
+        // Detect if mobile device (viewport width < 768px)
+        const isMobile = window.innerWidth < 768;
+
+        // Use appropriate count based on platform
+        const count = isMobile
+          ? (data.mobileCount || data.count || 8)
+          : (data.webCount || data.count || allGifs.length);
+
+        // Randomly select 'count' number of GIFs from the available list
+        const shuffledGifs = [...allGifs].sort(() => Math.random() - 0.5);
+        const selectedGifs = shuffledGifs.slice(0, Math.min(count, allGifs.length));
+
         const positions: GifPosition[] = [];
         const existingBoxes: BoundingBox[] = [];
 
-        data.celebration_overlays.forEach((url: string, index: number) => {
-          const size = getRandomSize();
+        selectedGifs.forEach((url: string, index: number) => {
+          const size = getRandomSize(isMobile);
           const position = findNonOverlappingPosition(size, existingBoxes);
 
           // Add this box to the list of existing boxes

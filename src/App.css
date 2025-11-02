@@ -212,6 +212,7 @@ h1 {
 .game-won h2 {
   font-size: 2rem;
   margin-bottom: 15px;
+  white-space: pre-line; /* Preserve line breaks from \n characters */
 }
 
 .game-over p,
