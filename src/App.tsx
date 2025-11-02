@@ -85,6 +85,11 @@ function App() {
         title: puzzleData.title,
         instructions: puzzleData.instructions,
         theme: puzzleData.theme,
+        selectedWords: [],
+        solvedCategories: [],
+        mistakes: 0,
+        gameOver: false,
+        gameWon: false,
       }));
       setLoading(false);
     } catch (err) {
@@ -176,17 +181,9 @@ function App() {
   };
 
   const handleReset = () => {
-    loadPuzzle();
     setFeedback(null);
     setShowCelebration(false);
-    setGameState(prev => ({
-      ...prev,
-      selectedWords: [],
-      solvedCategories: [],
-      mistakes: 0,
-      gameOver: false,
-      gameWon: false,
-    }));
+    loadPuzzle();
   };
 
   if (loading) {
