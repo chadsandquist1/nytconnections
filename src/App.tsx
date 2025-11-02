@@ -53,14 +53,6 @@ function App() {
     }
   }, [gameState.theme]);
 
-  // Update background opacity based on solved categories
-  useEffect(() => {
-    const root = document.documentElement;
-    // Calculate opacity: 0 solved = 1.0, 1 solved = 0.75, 2 = 0.5, 3 = 0.25, 4 = 0
-    const opacity = (4 - gameState.solvedCategories.length) / 4;
-    root.style.setProperty('--background-opacity', opacity.toString());
-  }, [gameState.solvedCategories]);
-
   // Show celebration when game is won
   useEffect(() => {
     if (gameState.gameWon) {
