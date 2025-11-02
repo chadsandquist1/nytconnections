@@ -1,0 +1,12 @@
+# Copy this file to terraform.tfvars and update with your values
+# cp terraform.tfvars.example terraform.tfvars
+
+# AWS region where the S3 bucket will be created
+aws_region = "us-east-1"
+
+# Globally unique S3 bucket name (must be lowercase, alphanumeric, and hyphens only)
+# Example: nyt-connections-game-12345
+bucket_name = "your-unique-bucket-name-here"
+
+# Environment tag
+environment = "prod"
