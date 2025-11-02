@@ -314,6 +314,7 @@ function App() {
       <CelebrationOverlay
         show={showCelebration}
         onComplete={() => setShowCelebration(false)}
+        duration={gameState.theme.celebrationDuration}
       />
     </div>
   );

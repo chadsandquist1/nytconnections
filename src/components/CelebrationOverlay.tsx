@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 interface CelebrationOverlayProps {
   show: boolean;
   onComplete: () => void;
+  duration?: number; // Duration in milliseconds (default: 6000)
 }
 
 interface GifPosition {
@@ -82,7 +83,7 @@ const findNonOverlappingPosition = (
   };
 };
 
-export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({ show, onComplete }) => {
+export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({ show, onComplete, duration = 6000 }) => {
   const [gifPositions, setGifPositions] = useState<GifPosition[]>([]);
 
   useEffect(() => {
@@ -132,11 +133,11 @@ export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({ show, on
     if (show) {
       const timer = setTimeout(() => {
         onComplete();
-      }, 6000);
+      }, duration);
 
       return () => clearTimeout(timer);
     }
-  }, [show, onComplete]);
+  }, [show, onComplete, duration]);
 
   if (!show) return null;
 

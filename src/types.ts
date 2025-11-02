@@ -9,6 +9,7 @@ export interface Theme {
   secondaryColor: string;
   accentColor: string;
   backgroundImage: string;
+  celebrationDuration?: number; // Duration in milliseconds (default: 6000)
 }
 
 export interface PuzzleData {
