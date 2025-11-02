@@ -8,6 +8,9 @@ import { GameControls } from './components/GameControls';
 import { CelebrationOverlay } from './components/CelebrationOverlay';
 import './App.css';
 
+// Get config directory from environment variable
+const CONFIG_DIR = import.meta.env.VITE_CONNECTIONS_CONFIG_DIR || '/connections';
+
 function App() {
   const [gameState, setGameState] = useState<GameState>({
     categories: [],
@@ -63,12 +66,12 @@ function App() {
   const loadPuzzle = async () => {
     try {
       setLoading(true);
-      const puzzleData = await loadPuzzleFromCSV('/puzzle.csv');
+      const puzzleData = await loadPuzzleFromCSV(`${CONFIG_DIR}/puzzle.csv`);
 
       // Load theme from theme.json if it exists
       let theme = puzzleData.theme;
       try {
-        const themeResponse = await fetch('/theme.json');
+        const themeResponse = await fetch(`${CONFIG_DIR}/theme.json`);
         if (themeResponse.ok) {
           theme = await themeResponse.json();
         }
@@ -81,7 +84,7 @@ function App() {
       let title = puzzleData.title;
       let instructions = puzzleData.instructions;
       try {
-        const messagesResponse = await fetch('/messages.json');
+        const messagesResponse = await fetch(`${CONFIG_DIR}/messages.json`);
         if (messagesResponse.ok) {
           const messages = await messagesResponse.json();
           if (messages.completionMessage) completionMessage = messages.completionMessage;

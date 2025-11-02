@@ -63,5 +63,8 @@ export default defineConfig({
     command: 'npm run dev',
     url: 'http://localhost:8000',
     reuseExistingServer: !process.env.CI,
+    env: {
+      VITE_CONNECTIONS_CONFIG_DIR: '/connections-test',
+    },
   },
 });

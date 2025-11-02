@@ -1,4 +1,4 @@
-# Lifetime Fitness Edina - 20 Week Workout Program
+# Personalized 52 Week / 45 Minutes Workout Program
 
 ## Overview
 
@@ -28,7 +28,7 @@ This is a progressive 52-week workout program designed for Personized Fitness in
 
 ## Progressive Overload
 
-The program progressively increases in intensity over the 20 weeks:
+The program progressively increases in intensity over the 52 weeks:
 
 - **Weeks 1-4:** Foundation building, learning movements
 - **Weeks 5-8:** Increased volume and intensity

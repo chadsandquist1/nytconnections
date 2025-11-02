@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+// Get config directory from environment variable
+const CONFIG_DIR = import.meta.env.VITE_CONNECTIONS_CONFIG_DIR || '/connections';
+
 interface CelebrationOverlayProps {
   show: boolean;
   onComplete: () => void;
@@ -123,7 +126,7 @@ export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({ show, on
   useEffect(() => {
     const loadGifs = async () => {
       try {
-        const response = await fetch('/celebration_overlay_gif.json');
+        const response = await fetch(`${CONFIG_DIR}/celebration_overlay_gif.json`);
         const data = await response.json();
 
         const allGifs = data.celebration_overlays;
