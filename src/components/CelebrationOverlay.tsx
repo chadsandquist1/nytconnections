@@ -15,7 +15,7 @@ interface GifPosition {
   animationDelay: string;
 }
 
-const animations = ['float', 'spin', 'pulse'];
+const animations = ['float', 'pulse'];
 
 interface BoundingBox {
   top: number;
@@ -70,7 +70,7 @@ const findNonOverlappingPosition = (
       maxOverlap = Math.max(maxOverlap, overlap);
     }
 
-    if (maxOverlap <= 20) {
+    if (maxOverlap <= 10) {
       return { top, left };
     }
   }
