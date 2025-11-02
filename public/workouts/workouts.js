@@ -21,12 +21,40 @@ const exerciseLibrary = {
             { name: "StairStepper Power", details: "20 min with high intensity intervals", bodyweight: false }
         ],
         bodyweight: [
+            // Outdoor Walking/Running exercises (converted from treadmill)
+            { name: "Outside Walk/Jog", details: "5 min warmup walk, 10 min jog (moderate pace), 5 min cooldown", bodyweight: true },
+            { name: "Outside Walking Intervals", details: "2 min walk, 2 min jog, repeat 5 times", bodyweight: true },
+            { name: "Outside Run", details: "5 min walk, 12 min steady run, 3 min cooldown", bodyweight: true },
+            { name: "Outside Hill Walk", details: "20 minutes walking hills or incline", bodyweight: true },
+            { name: "Outside Sprint Intervals", details: "1 min walk, 1 min sprint, repeat 10 times", bodyweight: true },
+            { name: "Outside Hills", details: "20 min alternating 2 min flat, 2 min uphill", bodyweight: true },
+            { name: "Outside Progressive Run", details: "20 min starting easy, ending hard", bodyweight: true },
+            { name: "Outside Tempo Run", details: "20 min at challenging pace", bodyweight: true },
+            { name: "Outside Easy Walk", details: "20 minutes comfortable pace", bodyweight: true },
+
+            // Traditional bodyweight cardio
             { name: "Jumping Jacks", details: "20 minutes with breaks as needed", bodyweight: true },
             { name: "High Knees", details: "20 min alternating with march in place", bodyweight: true },
             { name: "Burpee Cardio", details: "15-20 min of burpees with rest breaks", bodyweight: true },
             { name: "Jump Rope (imaginary)", details: "20 minutes jumping rope motion", bodyweight: true },
             { name: "Running in Place", details: "20 minutes varying intensity", bodyweight: true },
-            { name: "Shadow Boxing", details: "20 minutes with combinations", bodyweight: true }
+            { name: "Shadow Boxing", details: "20 minutes with combinations", bodyweight: true },
+
+            // Additional bodyweight cardio options
+            { name: "Mountain Climber Cardio", details: "20 min mountain climbers with rest breaks", bodyweight: true },
+            { name: "Burpee-Jumping Jack Combo", details: "20 min alternating burpees and jumping jacks", bodyweight: true },
+            { name: "Skater Hops", details: "20 min lateral skater hops", bodyweight: true },
+            { name: "Jump Squat Intervals", details: "15-20 min jump squats with breaks", bodyweight: true },
+            { name: "High Knee Sprints", details: "20 min high knees at sprint pace", bodyweight: true },
+            { name: "Butt Kickers", details: "20 min butt kickers alternating with jog in place", bodyweight: true },
+            { name: "Fast Feet Drill", details: "20 min fast feet in place with breaks", bodyweight: true },
+            { name: "Boxing Cardio", details: "20 min shadowboxing with footwork drills", bodyweight: true },
+            { name: "Stair Climbing", details: "20 min climbing stairs at home or park", bodyweight: true },
+            { name: "Dancing", details: "20 minutes freestyle dancing for cardio", bodyweight: true },
+            { name: "Lateral Shuffles", details: "20 min side-to-side shuffles", bodyweight: true },
+            { name: "Bear Crawls", details: "15-20 min bear crawls with breaks", bodyweight: true },
+            { name: "Crab Walks", details: "15-20 min crab walks forward/backward", bodyweight: true },
+            { name: "Inchworms", details: "20 min inchworm walks", bodyweight: true }
         ]
     },
     strength: {
