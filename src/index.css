@@ -35,10 +35,10 @@ body {
   min-height: 100vh;
   background-color: #f7f7f7;
   background-image: var(--background-image);
-  background-size: contain;
+  background-size: auto;
   background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-repeat: repeat;
+  background-attachment: scroll;
 }
 
 button {
