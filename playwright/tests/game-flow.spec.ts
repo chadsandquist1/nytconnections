@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('NYT Connections Game - Game Flow', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/game.html');
   });
 
   test('should load the game successfully', async ({ page }) => {

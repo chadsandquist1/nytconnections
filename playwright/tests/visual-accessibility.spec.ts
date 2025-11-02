@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('NYT Connections Game - Visual & Accessibility', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/game.html');
     await page.waitForSelector('.word-cell');
   });
 

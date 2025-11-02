@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('NYT Connections Game - Winning Scenario', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/game.html');
     // Wait for the game to load
     await page.waitForSelector('.word-cell');
   });
