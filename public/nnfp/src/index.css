@@ -1,0 +1,270 @@
+/* NNFP - Migrated from legacy main.css */
+/* Preserving the original look and feel with monospace fonts */
+
+:root {
+  --primary-color: #D33381;
+  --border-color: #000000;
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --winner-bg: #AAFFAA;
+  --loser-bg: #ffffff;
+  --green-color: #008000;
+  --red-color: #FF0000;
+  --blue-color: #0000FF;
+  --gray-dark: #B0B0B0;
+  --gray-light: #E0E0E0;
+  --gray-blue: #A0A0D0;
+  --yellow-light: #FFFFEE;
+  --orange-light: #ffd366;
+
+  /* Monospace font stack from legacy */
+  --mono-font: Consolas, Monaco, 'Lucida Console', 'Liberation Mono',
+               'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New',
+               monospace, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 30px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+h1 {
+  color: var(--primary-color);
+  border-bottom: var(--border-color) 3px dotted;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: var(--primary-color);
+  margin: 20px 0 10px;
+}
+
+h3 {
+  color: var(--primary-color);
+  border-top: var(--border-color) 3px dotted;
+  margin: 20px 0 10px;
+  padding-top: 10px;
+}
+
+.betaheader {
+  color: #000080;
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.betafooter {
+  color: #000080;
+  border-bottom: #CCCCCC 3px double;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+p, td {
+  color: var(--text-color);
+  font-family: var(--mono-font);
+  font-size: 10pt;
+}
+
+pre {
+  font-family: var(--mono-font);
+  font-size: 10pt;
+}
+
+.normalfont {
+  color: var(--text-color);
+  font-family: var(--mono-font);
+  font-size: 10pt;
+}
+
+.matchup {
+  color: var(--text-color);
+  font-family: var(--mono-font);
+  font-size: 10pt;
+  hyphens: none;
+  white-space: pre;
+}
+
+.smallfont {
+  font-family: var(--mono-font);
+  font-size: 9pt;
+}
+
+.tinyfont {
+  font-family: var(--mono-font);
+  font-size: 9pt;
+}
+
+.bigfont {
+  color: var(--text-color);
+  font-family: var(--mono-font);
+  font-size: 11pt;
+}
+
+.nondisplay {
+  display: none;
+}
+
+table.thin {
+  border-width: 0 0 0px 0px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-style: solid;
+  margin: 10px 0;
+}
+
+.thin td, .thin th {
+  margin: 0;
+  padding: 2px;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid;
+  min-width: 108px;
+  font-family: var(--mono-font);
+  font-size: 10pt;
+  color: var(--text-color);
+}
+
+table.result {
+  border-width: 0 0 0px 0px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-style: solid;
+  margin: 10px 0;
+}
+
+.result td, .result th {
+  margin: 0;
+  padding: 2px;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid;
+  min-width: 52px;
+  font-family: var(--mono-font);
+  font-size: 10pt;
+  color: var(--text-color);
+}
+
+.projection {
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.2s ease;
+  display: inline-block;
+  padding: 2px 4px;
+}
+
+.projection:hover {
+  background-color: var(--orange-light);
+}
+
+.winner-color {
+  color: var(--green-color);
+  font-weight: bold;
+}
+
+.loser-color {
+  color: var(--red-color);
+  font-weight: bold;
+}
+
+.tie-color {
+  color: var(--blue-color);
+  font-weight: bold;
+}
+
+.game-complete {
+  background-color: var(--gray-dark);
+}
+
+.game-tie {
+  background-color: var(--gray-blue);
+}
+
+.game-not-started {
+  background-color: var(--gray-light);
+}
+
+.game-in-progress {
+  background-color: var(--yellow-light);
+}
+
+.winner-bg {
+  background-color: var(--winner-bg);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  body {
+    margin: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .normalfont, .matchup, p, td {
+    font-size: 9pt;
+  }
+
+  .thin td, .thin th {
+    min-width: 80px;
+    font-size: 9pt;
+  }
+}
+
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--gray-light);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  color: var(--red-color);
+  background-color: #ffe0e0;
+  border: 1px solid var(--red-color);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-family: var(--mono-font);
+}
+
+.success-message {
+  color: var(--green-color);
+  background-color: #e0ffe0;
+  border: 1px solid var(--green-color);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-family: var(--mono-font);
+}
