@@ -154,7 +154,7 @@ resource "aws_lambda_function_url" "backend" {
   cors {
     allow_credentials = false
     allow_origins     = ["*"]  # In production, restrict to your CloudFront domain
-    allow_methods     = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    allow_methods     = ["*"]
     allow_headers     = ["*"]
     max_age          = 3600
   }

@@ -32,3 +32,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Terraform
+TF/.terraform/
+TF/*.tfstate
+TF/*.tfstate.backup
+TF/.terraform.lock.hcl

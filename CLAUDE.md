@@ -125,3 +125,5 @@ The app supports three levels of customization (in priority order):
 
 ### Victory Celebration
 The celebration overlay appears when `gameWon` becomes true. Duration defaults to 6 seconds but can be customized via `theme.celebrationDuration` (in milliseconds).
+
+IMPORTANT: NEVER CHECK IN THE TF STATE FILES.

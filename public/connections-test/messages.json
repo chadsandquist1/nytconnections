@@ -1,5 +1,5 @@
 {
-  "title": "Lets row the boat!",
-  "instructions": "Group these words just like New York Times connections!",
-  "completionMessage": "Congrats Lizzie!\nYou got into\nMinnesota!\nYou go girl!"
+  "title": "Test Connections",
+  "instructions": "Find groups of four words",
+  "completionMessage": "You won!"
 }

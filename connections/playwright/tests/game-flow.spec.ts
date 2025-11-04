@@ -7,10 +7,10 @@ test.describe('NYT Connections Game - Game Flow', () => {
 
   test('should load the game successfully', async ({ page }) => {
     // Check that the title is displayed
-    await expect(page.locator('h1')).toContainText('Lets row the boat!');
+    await expect(page.locator('h1')).toContainText('Test Connections');
 
     // Check that instructions are displayed
-    await expect(page.locator('.instructions')).toContainText('Group these words');
+    await expect(page.locator('.instructions')).toContainText('Find groups of four words');
 
     // Check that 16 word cells are present (4x4 grid)
     const wordCells = page.locator('.word-cell');
@@ -164,8 +164,8 @@ test.describe('NYT Connections Game - Game Flow', () => {
     await wordCells.nth(0).click();
     await wordCells.nth(1).click();
 
-    // Click reset
-    await page.locator('.reset-link').click();
+    // Click reset button (not the link)
+    await page.getByRole('button', { name: 'Reset Game' }).click();
 
     // Words should be deselected
     await expect(wordCells.nth(0)).not.toHaveClass(/selected/);
