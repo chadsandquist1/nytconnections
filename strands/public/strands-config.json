@@ -1,0 +1,71 @@
+{
+  "ui": {
+    "home": {
+      "title": "Strands",
+      "subtitle": "Custom Edition",
+      "description": "Find hidden words and uncover the day's theme",
+      "playButtonText": "Play",
+      "creditLine1": "Designed in Edina",
+      "creditLine2": "Puzzle by Chad and Claude!",
+      "logoUrl": "https://www.nytimes.com/games/prototype/dist/strands100px.ea3b90d2.svg"
+    },
+    "game": {
+      "puzzleNumber": "#1",
+      "themeLabel": "TODAY'S THEME",
+      "themeText": "All Star Cheer",
+      "wordsFoundLabel": "theme words found",
+      "totalWords": 8,
+      "hintButtonText": "Hint",
+      "viewResultsText": "View Results"
+    },
+    "completion": {
+      "title": "WOO HOO! YOU COMPLETED THE PUZZLE!",
+      "puzzleNumber": "Strands #1",
+      "shareButtonText": "Share ",
+      "shareButtonCopied": "Copied!",
+      "closeButtonText": "Close",
+      "backToPuzzleText": "Back to puzzle ×",
+      "messageTemplate": "Nice job finding the theme words 🔵 and <br />Spangram 🟡. You used {hintsUsed} hints 💡.",
+      "shareTextTemplate": "Strands #1\n\"All Star Cheer\"\n{emojiString}"
+    }
+  },
+  "puzzle": {
+    "spangram": {
+      "word": "GONORTHERN",
+      "coordinates": ["0-5", "1-5", "2-5", "3-5", "4-5", "5-5", "6-5", "7-5", "7-4", "7-3"]
+    },
+    "grid": [
+      ["R", "A", "M", "P", "A", "G"],
+      ["R", "I", "P", "E", "G", "O"],
+      ["F", "R", "T", "I", "D", "N"],
+      ["E", "N", "Z", "Y", "E", "O"],
+      ["S", "H", "A", "D", "E", "R"],
+      ["S", "M", "A", "C", "K", "T"],
+      ["E", "F", "I", "R", "E", "H"],
+      ["N", "V", "Y", "N", "R", "E"]
+    ],
+    "words": {
+      "ENVY": {
+        "coordinates": ["6-0", "7-0", "7-1", "7-2"]
+      },
+      "SHADE": {
+        "coordinates": ["4-4", "4-3", "4-2", "4-1", "4-0"]
+      },
+      "SMACK": {
+        "coordinates": ["5-4", "5-3", "5-2", "5-1", "5-0"]
+      },
+      "FIRE": {
+        "coordinates": ["6-1", "6-2", "6-3", "6-4"]
+      },
+      "RAMPAGE": {
+        "coordinates": ["1-3", "1-4", "0-4", "0-3", "0-2", "0-1", "0-0"]
+      },
+      "RIPTIDE": {
+        "coordinates": ["3-4", "2-4", "2-3", "2-2", "1-2", "1-1", "1-0"]
+      },
+      "FRENZY": {
+        "coordinates": ["2-0", "2-1", "3-0", "3-1", "3-2", "3-3"]
+      }
+    }
+  }
+}

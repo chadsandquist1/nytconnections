@@ -5,11 +5,21 @@ variable "aws_region" {
 }
 
 variable "bucket_name" {
-  description = "Name of the S3 bucket (must be globally unique)"
+  description = "Name of the primary S3 bucket (must be globally unique)"
   type        = string
 
   validation {
     condition     = can(regex("^[a-z0-9][a-z0-9-]*[a-z0-9]$", var.bucket_name))
+    error_message = "Bucket name must be lowercase alphanumeric with hyphens, and cannot start or end with a hyphen."
+  }
+}
+
+variable "bucket_name_apps" {
+  description = "Name of the secondary apps S3 bucket (must be globally unique)"
+  type        = string
+
+  validation {
+    condition     = can(regex("^[a-z0-9][a-z0-9-]*[a-z0-9]$", var.bucket_name_apps))
     error_message = "Bucket name must be lowercase alphanumeric with hyphens, and cannot start or end with a hyphen."
   }
 }

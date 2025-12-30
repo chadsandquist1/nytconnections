@@ -1,0 +1,763 @@
+{
+  "gameBoards": [
+    {
+      "id": 1,
+      "categories": [
+        {
+          "id": 101,
+          "title": "AWS"
+        },
+        {
+          "id": 102,
+          "title": "Travelers Corporation Trivia"
+        },
+        {
+          "id": 103,
+          "title": "Software Architecture"
+        },
+        {
+          "id": 104,
+          "title": "AI"
+        },
+        {
+          "id": 105,
+          "title": "Potpourri"
+        },
+        {
+          "id": 106,
+          "title": "History of Computing"
+        }
+      ],
+      "clues": {
+        "101": [
+          {
+            "id": 1001,
+            "question": "This AWS storage service is like a file folder in the cloud",
+            "answer": "S3 (Simple Storage Service)",
+            "value": 200,
+            "category_id": 101
+          },
+          {
+            "id": 1002,
+            "question": "This AWS service lets you rent virtual computers in the cloud",
+            "answer": "EC2 (Elastic Compute Cloud)",
+            "value": 400,
+            "category_id": 101
+          },
+          {
+            "id": 1003,
+            "question": "AWS services are hosted in these physical locations around the world",
+            "answer": "Regions",
+            "value": 600,
+            "category_id": 101
+          },
+          {
+            "id": 1004,
+            "question": "This AWS database service is fully managed and handles the setup for you",
+            "answer": "RDS (Relational Database Service)",
+            "value": 800,
+            "category_id": 101
+          },
+          {
+            "id": 1005,
+            "question": "This AWS service automatically distributes incoming traffic across multiple targets",
+            "answer": "Elastic Load Balancing (or ELB)",
+            "value": 1000,
+            "category_id": 101
+          }
+        ],
+        "102": [
+          {
+            "id": 1006,
+            "question": "This iconic symbol has been Travelers' logo since 1959",
+            "answer": "Red Umbrella",
+            "value": 200,
+            "category_id": 102
+          },
+          {
+            "id": 1007,
+            "question": "Travelers Insurance Company was founded in this year",
+            "answer": "1864",
+            "value": 400,
+            "category_id": 102
+          },
+          {
+            "id": 1008,
+            "question": "In 1897, Travelers issued the first insurance policy for this type of vehicle",
+            "answer": "Automobile (or Car)",
+            "value": 600,
+            "category_id": 102
+          },
+          {
+            "id": 1009,
+            "question": "Travelers' largest office is located in this Connecticut city",
+            "answer": "Hartford",
+            "value": 800,
+            "category_id": 102
+          },
+          {
+            "id": 1010,
+            "question": "In the late 1960s, Travelers issued the first insurance for this space program",
+            "answer": "Apollo (program)",
+            "value": 1000,
+            "category_id": 102
+          }
+        ],
+        "103": [
+          {
+            "id": 1011,
+            "question": "This pattern separates an app into Model, View, and Controller",
+            "answer": "MVC",
+            "value": 200,
+            "category_id": 103
+          },
+          {
+            "id": 1012,
+            "question": "This type of architecture breaks apps into small, independent services",
+            "answer": "Microservices",
+            "value": 400,
+            "category_id": 103
+          },
+          {
+            "id": 1013,
+            "question": "This design pattern creates a single instance of a class",
+            "answer": "Singleton",
+            "value": 600,
+            "category_id": 103
+          },
+          {
+            "id": 1014,
+            "question": "REST stands for Representational State Transfer and uses this protocol",
+            "answer": "HTTP",
+            "value": 800,
+            "category_id": 103
+          },
+          {
+            "id": 1015,
+            "question": "This architecture style uses events to trigger communication between services",
+            "answer": "Event-Driven Architecture",
+            "value": 1000,
+            "category_id": 103
+          }
+        ],
+        "104": [
+          {
+            "id": 1016,
+            "question": "AI stands for these two words",
+            "answer": "Artificial Intelligence",
+            "value": 200,
+            "category_id": 104
+          },
+          {
+            "id": 1017,
+            "question": "This type of AI learns from examples without being explicitly programmed",
+            "answer": "Machine Learning",
+            "value": 400,
+            "category_id": 104
+          },
+          {
+            "id": 1018,
+            "question": "ChatGPT is an example of this type of AI model that generates text",
+            "answer": "Large Language Model (or LLM)",
+            "value": 600,
+            "category_id": 104
+          },
+          {
+            "id": 1019,
+            "question": "This type of machine learning uses labeled data to train models",
+            "answer": "Supervised Learning",
+            "value": 800,
+            "category_id": 104
+          },
+          {
+            "id": 1020,
+            "question": "This type of neural network is particularly good at processing images",
+            "answer": "Convolutional Neural Network (or CNN)",
+            "value": 1000,
+            "category_id": 104
+          }
+        ],
+        "105": [
+          {
+            "id": 1021,
+            "question": "In computing, a bit is short for these two words",
+            "answer": "Binary Digit",
+            "value": 200,
+            "category_id": 105
+          },
+          {
+            "id": 1022,
+            "question": "This AWS service is similar to a database that stores structured data in tables",
+            "answer": "DynamoDB (or RDS)",
+            "value": 400,
+            "category_id": 105
+          },
+          {
+            "id": 1023,
+            "question": "This company's red umbrella logo first appeared in advertising in 1870",
+            "answer": "Travelers",
+            "value": 600,
+            "category_id": 105
+          },
+          {
+            "id": 1024,
+            "question": "In AI, training data that has correct answers labeled is called this",
+            "answer": "Labeled Data",
+            "value": 800,
+            "category_id": 105
+          },
+          {
+            "id": 1025,
+            "question": "An API is this type of interface that lets programs talk to each other",
+            "answer": "Application Programming Interface",
+            "value": 1000,
+            "category_id": 105
+          }
+        ],
+        "106": [
+          {
+            "id": 1026,
+            "question": "This tech giant was founded by Bill Gates and Paul Allen in 1975",
+            "answer": "Microsoft",
+            "value": 200,
+            "category_id": 106
+          },
+          {
+            "id": 1027,
+            "question": "The first computer programmer was this woman who worked with Charles Babbage",
+            "answer": "Ada Lovelace",
+            "value": 400,
+            "category_id": 106
+          },
+          {
+            "id": 1028,
+            "question": "In 1989, Tim Berners-Lee invented this system for sharing information",
+            "answer": "The World Wide Web (or WWW)",
+            "value": 600,
+            "category_id": 106
+          },
+          {
+            "id": 1029,
+            "question": "This early computer from the 1940s weighed 30 tons and filled a room",
+            "answer": "ENIAC",
+            "value": 800,
+            "category_id": 106
+          },
+          {
+            "id": 1030,
+            "question": "Apple's first personal computer, released in 1976, was called this",
+            "answer": "Apple I (or Apple 1)",
+            "value": 1000,
+            "category_id": 106
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "categories": [
+        {
+          "id": 201,
+          "title": "AWS"
+        },
+        {
+          "id": 202,
+          "title": "Travelers Corporation Trivia"
+        },
+        {
+          "id": 203,
+          "title": "Software Architecture"
+        },
+        {
+          "id": 204,
+          "title": "AI"
+        },
+        {
+          "id": 205,
+          "title": "Potpourri"
+        },
+        {
+          "id": 206,
+          "title": "History of Computing"
+        }
+      ],
+      "clues": {
+        "201": [
+          {
+            "id": 2001,
+            "question": "This AWS service lets you run code without managing servers",
+            "answer": "Lambda",
+            "value": 200,
+            "category_id": 201
+          },
+          {
+            "id": 2002,
+            "question": "AWS stands for Amazon Web followed by this word",
+            "answer": "Services",
+            "value": 400,
+            "category_id": 201
+          },
+          {
+            "id": 2003,
+            "question": "This AWS service provides a managed NoSQL database",
+            "answer": "DynamoDB",
+            "value": 600,
+            "category_id": 201
+          },
+          {
+            "id": 2004,
+            "question": "This AWS service speeds up content delivery using a network of edge locations",
+            "answer": "CloudFront",
+            "value": 800,
+            "category_id": 201
+          },
+          {
+            "id": 2005,
+            "question": "This AWS identity service manages user access and permissions",
+            "answer": "IAM (Identity and Access Management)",
+            "value": 1000,
+            "category_id": 201
+          }
+        ],
+        "202": [
+          {
+            "id": 2006,
+            "question": "James Batterson founded Travelers in this Connecticut city",
+            "answer": "Hartford",
+            "value": 200,
+            "category_id": 202
+          },
+          {
+            "id": 2007,
+            "question": "Before the red umbrella, Travelers' logo was this suit of protective gear",
+            "answer": "Knight's Armor",
+            "value": 400,
+            "category_id": 202
+          },
+          {
+            "id": 2008,
+            "question": "Travelers became part of the Dow Jones in this year",
+            "answer": "2009",
+            "value": 600,
+            "category_id": 202
+          },
+          {
+            "id": 2009,
+            "question": "In 1919, Travelers issued the first policy for this type of travel",
+            "answer": "Air Travel (or Aviation)",
+            "value": 800,
+            "category_id": 202
+          },
+          {
+            "id": 2010,
+            "question": "Travelers merged with this financial company in 1998",
+            "answer": "Citigroup",
+            "value": 1000,
+            "category_id": 202
+          }
+        ],
+        "203": [
+          {
+            "id": 2011,
+            "question": "This design principle means writing code once and using it many times",
+            "answer": "DRY (Don't Repeat Yourself)",
+            "value": 200,
+            "category_id": 203
+          },
+          {
+            "id": 2012,
+            "question": "In this architecture, the user interface and backend are separated",
+            "answer": "Client-Server",
+            "value": 400,
+            "category_id": 203
+          },
+          {
+            "id": 2013,
+            "question": "This pattern lets you observe changes in an object and notify others",
+            "answer": "Observer Pattern",
+            "value": 600,
+            "category_id": 203
+          },
+          {
+            "id": 2014,
+            "question": "APIs that follow REST principles are called this",
+            "answer": "RESTful APIs",
+            "value": 800,
+            "category_id": 203
+          },
+          {
+            "id": 2015,
+            "question": "This architecture stores data and logic in multiple physical locations",
+            "answer": "Distributed Systems",
+            "value": 1000,
+            "category_id": 203
+          }
+        ],
+        "204": [
+          {
+            "id": 2016,
+            "question": "This type of AI tries to mimic how the human brain works",
+            "answer": "Neural Network",
+            "value": 200,
+            "category_id": 204
+          },
+          {
+            "id": 2017,
+            "question": "When an AI model learns from data without labels, it's this type of learning",
+            "answer": "Unsupervised Learning",
+            "value": 400,
+            "category_id": 204
+          },
+          {
+            "id": 2018,
+            "question": "This AI system can understand and generate human language",
+            "answer": "NLP (Natural Language Processing)",
+            "value": 600,
+            "category_id": 204
+          },
+          {
+            "id": 2019,
+            "question": "This term describes AI that learns through trial and error with rewards",
+            "answer": "Reinforcement Learning",
+            "value": 800,
+            "category_id": 204
+          },
+          {
+            "id": 2020,
+            "question": "When AI training data reflects human prejudices, this problem occurs",
+            "answer": "Bias",
+            "value": 1000,
+            "category_id": 204
+          }
+        ],
+        "205": [
+          {
+            "id": 2021,
+            "question": "This programming language is named after a type of coffee",
+            "answer": "Java",
+            "value": 200,
+            "category_id": 205
+          },
+          {
+            "id": 2022,
+            "question": "S3 stores files in these container-like structures",
+            "answer": "Buckets",
+            "value": 400,
+            "category_id": 205
+          },
+          {
+            "id": 2023,
+            "question": "Travelers' stonecutter founder had this first name",
+            "answer": "James",
+            "value": 600,
+            "category_id": 205
+          },
+          {
+            "id": 2024,
+            "question": "In software design, SOLID is a set of these guiding rules",
+            "answer": "Principles",
+            "value": 800,
+            "category_id": 205
+          },
+          {
+            "id": 2025,
+            "question": "Deep learning uses networks with many of these processing layers",
+            "answer": "Layers (or Hidden Layers)",
+            "value": 1000,
+            "category_id": 205
+          }
+        ],
+        "206": [
+          {
+            "id": 2026,
+            "question": "This punch card system from the 1800s was an early form of programming",
+            "answer": "Jacquard Loom",
+            "value": 200,
+            "category_id": 206
+          },
+          {
+            "id": 2027,
+            "question": "IBM introduced this first personal computer in 1981",
+            "answer": "IBM PC",
+            "value": 400,
+            "category_id": 206
+          },
+          {
+            "id": 2028,
+            "question": "This British mathematician is considered the father of computer science",
+            "answer": "Alan Turing",
+            "value": 600,
+            "category_id": 206
+          },
+          {
+            "id": 2029,
+            "question": "The first computer mouse was invented in this decade",
+            "answer": "1960s",
+            "value": 800,
+            "category_id": 206
+          },
+          {
+            "id": 2030,
+            "question": "Grace Hopper developed this first compiler in 1952",
+            "answer": "A-0 (or the first compiler)",
+            "value": 1000,
+            "category_id": 206
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "categories": [
+        {
+          "id": 301,
+          "title": "AWS"
+        },
+        {
+          "id": 302,
+          "title": "Travelers Corporation Trivia"
+        },
+        {
+          "id": 303,
+          "title": "Software Architecture"
+        },
+        {
+          "id": 304,
+          "title": "AI"
+        },
+        {
+          "id": 305,
+          "title": "Potpourri"
+        },
+        {
+          "id": 306,
+          "title": "History of Computing"
+        }
+      ],
+      "clues": {
+        "301": [
+          {
+            "id": 3001,
+            "question": "This AWS messaging service sends notifications to subscribers",
+            "answer": "SNS (Simple Notification Service)",
+            "value": 200,
+            "category_id": 301
+          },
+          {
+            "id": 3002,
+            "question": "This AWS service provides domain name system services",
+            "answer": "Route 53",
+            "value": 400,
+            "category_id": 301
+          },
+          {
+            "id": 3003,
+            "question": "This AWS service monitors your resources and applications",
+            "answer": "CloudWatch",
+            "value": 600,
+            "category_id": 301
+          },
+          {
+            "id": 3004,
+            "question": "This AWS service creates private networks in the cloud",
+            "answer": "VPC (Virtual Private Cloud)",
+            "value": 800,
+            "category_id": 301
+          },
+          {
+            "id": 3005,
+            "question": "This AWS container service runs Docker applications",
+            "answer": "ECS (Elastic Container Service)",
+            "value": 1000,
+            "category_id": 301
+          }
+        ],
+        "302": [
+          {
+            "id": 3006,
+            "question": "Travelers sold the first two-cent accident policy to a banker in this year",
+            "answer": "1864",
+            "value": 200,
+            "category_id": 302
+          },
+          {
+            "id": 3007,
+            "question": "Travelers established the first private weather research facility in this decade",
+            "answer": "1950s",
+            "value": 400,
+            "category_id": 302
+          },
+          {
+            "id": 3008,
+            "question": "During World War II, Travelers underwrote this atomic bomb project",
+            "answer": "Manhattan Project",
+            "value": 600,
+            "category_id": 302
+          },
+          {
+            "id": 3009,
+            "question": "Travelers' current headquarters are in this major city",
+            "answer": "New York City",
+            "value": 800,
+            "category_id": 302
+          },
+          {
+            "id": 3010,
+            "question": "Travelers is incorporated in this northern U.S. state",
+            "answer": "Minnesota",
+            "value": 1000,
+            "category_id": 302
+          }
+        ],
+        "303": [
+          {
+            "id": 3011,
+            "question": "This software layer sits between the operating system and applications",
+            "answer": "Middleware",
+            "value": 200,
+            "category_id": 303
+          },
+          {
+            "id": 3012,
+            "question": "This pattern creates objects without specifying their exact class",
+            "answer": "Factory Pattern",
+            "value": 400,
+            "category_id": 303
+          },
+          {
+            "id": 3013,
+            "question": "In this architecture, services communicate through a central hub",
+            "answer": "Hub and Spoke",
+            "value": 600,
+            "category_id": 303
+          },
+          {
+            "id": 3014,
+            "question": "This approach stores different data types in separate databases",
+            "answer": "Polyglot Persistence",
+            "value": 800,
+            "category_id": 303
+          },
+          {
+            "id": 3015,
+            "question": "This pattern separates data access logic from business logic",
+            "answer": "Repository Pattern",
+            "value": 1000,
+            "category_id": 303
+          }
+        ],
+        "304": [
+          {
+            "id": 3016,
+            "question": "This type of AI can perform only one specific task",
+            "answer": "Narrow AI (or Weak AI)",
+            "value": 200,
+            "category_id": 304
+          },
+          {
+            "id": 3017,
+            "question": "The process of teaching an AI model is called this",
+            "answer": "Training",
+            "value": 400,
+            "category_id": 304
+          },
+          {
+            "id": 3018,
+            "question": "This type of AI can generate new images or text from prompts",
+            "answer": "Generative AI",
+            "value": 600,
+            "category_id": 304
+          },
+          {
+            "id": 3019,
+            "question": "This AI technique adjusts a model to improve its accuracy",
+            "answer": "Fine-tuning",
+            "value": 800,
+            "category_id": 304
+          },
+          {
+            "id": 3020,
+            "question": "When an AI performs too well on training data but poorly on new data",
+            "answer": "Overfitting",
+            "value": 1000,
+            "category_id": 304
+          }
+        ],
+        "305": [
+          {
+            "id": 3021,
+            "question": "HTML stands for HyperText followed by this language",
+            "answer": "Markup Language",
+            "value": 200,
+            "category_id": 305
+          },
+          {
+            "id": 3022,
+            "question": "Lambda lets you run code without managing these virtual machines",
+            "answer": "Servers",
+            "value": 400,
+            "category_id": 305
+          },
+          {
+            "id": 3023,
+            "question": "This insurance company founder was a stonecutter by trade",
+            "answer": "James Batterson",
+            "value": 600,
+            "category_id": 305
+          },
+          {
+            "id": 3024,
+            "question": "MVC separates data, display, and this control component",
+            "answer": "Controller",
+            "value": 800,
+            "category_id": 305
+          },
+          {
+            "id": 3025,
+            "question": "The T in ChatGPT stands for this word meaning changed",
+            "answer": "Transformer",
+            "value": 1000,
+            "category_id": 305
+          }
+        ],
+        "306": [
+          {
+            "id": 3027,
+            "question": "Steve Jobs and Steve Wozniak founded this company in 1976",
+            "answer": "Apple",
+            "value": 200,
+            "category_id": 306
+          },
+          {
+            "id": 3028,
+            "question": "This programming language was created for teaching and named after a snake",
+            "answer": "Python",
+            "value": 400,
+            "category_id": 306
+          },
+          {
+            "id": 3029,
+            "question": "Linux was created by this Finnish programmer in 1991",
+            "answer": "Linus Torvalds",
+            "value": 600,
+            "category_id": 306
+          },
+          {
+            "id": 3030,
+            "question": "This is the 2014 biographical thriller about Alan Turing and his role in WWII",
+            "answer": "The Imitation Game",
+            "value": 800,
+            "category_id": 306
+          },
+          {
+            "id": 3026,
+            "question": "This visionary dreamed up the Analytical Engine in the 1830s",
+            "answer": "Charles Babbage",
+            "value": 1000,
+            "category_id": 306
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanksgiving Dinner Timeline - Interactive Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fef9f3;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .nav-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .nav-section h2 {
+            color: #8B4513;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #D2691E;
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .time-block {
+            background: #fff8dc;
+            border: 2px solid #D2691E;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        
+        .time-block:hover {
+            background: #D2691E;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+        }
+        
+        .time-block .time {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 5px;
+        }
+        
+        .time-block:hover .time {
+            color: white;
+        }
+        
+        .time-block .task {
+            font-size: 0.95em;
+        }
+        
+        .detail-section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .detail-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .detail-section h3 {
+            color: #8B4513;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .detail-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .detail-section li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .detail-section li:before {
+            content: "🦃";
+            position: absolute;
+            left: 0;
+        }
+        
+        .recipe-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .recipe-card {
+            background: #fff8dc;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #D2691E;
+        }
+        
+        .recipe-card h4 {
+            color: #8B4513;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .ingredients {
+            margin: 10px 0;
+        }
+        
+        .ingredients li {
+            padding: 3px 0;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #8B4513;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            display: none;
+        }
+        
+        .back-to-top:hover {
+            background: #D2691E;
+            transform: scale(1.1);
+        }
+        
+        .back-to-top.visible {
+            display: block;
+        }
+        
+        .print-btn {
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .print-btn:hover {
+            background: #D2691E;
+            transform: translateY(-2px);
+        }
+        
+        .quick-ref {
+            background: #ffe4b5;
+            border: 2px dashed #D2691E;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .quick-ref h3 {
+            color: #8B4513;
+            margin-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .highlight {
+            background: #ffe4b5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        @media print {
+            .back-to-top, .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦃 Thanksgiving Dinner Timeline 🦃</h1>
+            <p class="subtitle">Dinner at 5:00 PM | Serves 8+ with leftovers</p>
+            <p style="margin-top: 10px;">2 Ovens • Microwave • Mixer • Toaster Oven/Air Fryer</p>
+        </header>
+
+        <div class="nav-section">
+            <h2>📋 Quick Navigation</h2>
+            <button class="print-btn" onclick="window.print()">🖨️ Print This Page</button>
+            <button class="print-btn" onclick="window.location.href='computer:///home/claude/thanksgiving_timeline.pdf'">📄 Download PDF</button>
+            
+            <div class="quick-ref">
+                <h3>Timeline at a Glance</h3>
+                <table>
+                    <tr><td><strong>10:00 AM</strong></td><td>Turkey prep & oven start</td></tr>
+                    <tr><td><strong>12:30 PM</strong></td><td>Sweet potato casserole prep</td></tr>
+                    <tr><td><strong>1:00 PM</strong></td><td>Stuffing prep begins</td></tr>
+                    <tr><td><strong>2:00 PM</strong></td><td>Green bean casserole prep</td></tr>
+                    <tr><td><strong>3:00 PM</strong></td><td>Mashed potatoes start</td></tr>
+                    <tr><td><strong>4:00 PM</strong></td><td>Final preparations begin</td></tr>
+                    <tr><td><strong>4:45 PM</strong></td><td>Gravy & last-minute tasks</td></tr>
+                    <tr><td><strong>5:00 PM</strong></td><td>🍽️ SERVE!</td></tr>
+                </table>
+            </div>
+            
+            <h3 style="margin-top: 25px; color: #8B4513;">Click any time block below for detailed instructions:</h3>
+            <div class="timeline-grid">
+                <a href="#time-1000" class="time-block">
+                    <div class="time">10:00 AM</div>
+                    <div class="task">Turkey Start</div>
+                </a>
+                <a href="#time-1015" class="time-block">
+                    <div class="time">10:15 AM</div>
+                    <div class="task">Prep Vegetables</div>
+                </a>
+                <a href="#time-1230" class="time-block">
+                    <div class="time">12:30 PM</div>
+                    <div class="task">Sweet Potato Casserole</div>
+                </a>
+                <a href="#time-0100" class="time-block">
+                    <div class="time">1:00 PM</div>
+                    <div class="task">Homemade Stuffing</div>
+                </a>
+                <a href="#time-0145" class="time-block">
+                    <div class="time">1:45 PM</div>
+                    <div class="task">Stovetop Stuffing</div>
+                </a>
+                <a href="#time-0200" class="time-block">
+                    <div class="time">2:00 PM</div>
+                    <div class="task">Green Bean Casserole</div>
+                </a>
+                <a href="#time-0230" class="time-block">
+                    <div class="time">2:30 PM</div>
+                    <div class="task">Cranberry Sauce</div>
+                </a>
+                <a href="#time-0300" class="time-block">
+                    <div class="time">3:00 PM</div>
+                    <div class="task">Mashed Potatoes</div>
+                </a>
+                <a href="#time-0345" class="time-block">
+                    <div class="time">3:45 PM</div>
+                    <div class="task">Shape Bread</div>
+                </a>
+                <a href="#time-0400" class="time-block">
+                    <div class="time">4:00 PM</div>
+                    <div class="task">Oven Coordination</div>
+                </a>
+                <a href="#time-0415" class="time-block">
+                    <div class="time">4:15 PM</div>
+                    <div class="task">Final Baking</div>
+                </a>
+                <a href="#time-0430" class="time-block">
+                    <div class="time">4:30 PM</div>
+                    <div class="task">Make Gravy</div>
+                </a>
+                <a href="#time-0445" class="time-block">
+                    <div class="time">4:45 PM</div>
+                    <div class="task">Final Assembly</div>
+                </a>
+                <a href="#time-0500" class="time-block">
+                    <div class="time">5:00 PM</div>
+                    <div class="task">🍽️ SERVE!</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Detailed Time Blocks -->
+        <div id="time-1000" class="detail-section">
+            <h3>10:00 AM - Turkey Start</h3>
+            <ul>
+                <li>Preheat <span class="highlight">main oven to 325°F</span></li>
+                <li>Remove turkey from packaging and pat completely dry with paper towels</li>
+                <li>Place turkey breast-side up in roasting pan with rack</li>
+                <li>Tent loosely with aluminum foil</li>
+                <li>Place in oven - <span class="highlight">will cook for approximately 7 hours</span></li>
+                <li>Set a reminder to check temperature at 4:00 PM</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Note:</strong> For a 15 lb turkey, allow approximately 28 minutes per pound. Target internal temperature is 165°F in the thickest part of the thigh.</p>
+        </div>
+
+        <div id="time-1015" class="detail-section">
+            <h3>10:15 AM - Prep Mise En Place</h3>
+            <ul>
+                <li>Chop <span class="highlight">4 cups onions</span> (about 2 large onions)</li>
+                <li>Chop <span class="highlight">3 cups celery</span> (about 6-8 stalks)</li>
+                <li>Mince 3-4 cloves garlic</li>
+                <li>Get all ingredients organized on counter</li>
+                <li>Set out all baking dishes you'll need (three 9x13 pans)</li>
+                <li>Grease baking dishes with butter or cooking spray</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Tip:</strong> This prep work will save you time later. Store prepped vegetables in bowls covered with damp paper towels.</p>
+        </div>
+
+        <div id="time-1230" class="detail-section">
+            <h3>12:30 PM - Sweet Potato Casserole</h3>
+            <ul>
+                <li>Peel and cube <span class="highlight">4 lbs sweet potatoes</span></li>
+                <li>Place in large pot, cover with water, bring to boil</li>
+                <li>Boil 20 minutes until fork-tender</li>
+                <li>Drain thoroughly and return to pot</li>
+                <li>Mash with: 1/2 cup butter, 1/2 cup brown sugar, 2 eggs (beaten), 1 tsp vanilla extract</li>
+                <li>Transfer to greased 9x13 pan</li>
+                <li><strong>Make topping:</strong> Mix 1 cup brown sugar, 1/2 cup flour, 1/3 cup melted butter, 1 cup chopped pecans</li>
+                <li>Sprinkle topping evenly over sweet potato mixture</li>
+                <li>Cover with foil and refrigerate</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Will bake at 4:00 PM for 30 minutes at 350°F</strong></p>
+        </div>
+
+        <div id="time-0100" class="detail-section">
+            <h3>1:00 PM - Homemade Stuffing</h3>
+            <ul>
+                <li>Cube <span class="highlight">1 large loaf of bread</span> into 1-inch pieces (12-16 cups)</li>
+                <li>Spread on baking sheets and toast in 250°F toaster oven for 15 minutes until dried out</li>
+                <li>In large skillet, melt 1/2 cup butter over medium heat</li>
+                <li>Add 2 cups diced onions and 2 cups diced celery</li>
+                <li>Sauté 8-10 minutes until softened</li>
+                <li>Add 2 tsp dried sage, 1 tsp dried thyme, 1 tsp salt, 1/2 tsp black pepper</li>
+                <li>In large bowl, combine toasted bread cubes and vegetable mixture</li>
+                <li>Gradually add 2-3 cups chicken broth until moist but not soggy</li>
+                <li>Transfer to greased 9x13 pan, cover with foil, refrigerate</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Will bake at 4:00 PM for 30 minutes at 350°F</strong></p>
+        </div>
+
+        <div id="time-0145" class="detail-section">
+            <h3>1:45 PM - Stovetop Stuffing</h3>
+            <ul>
+                <li>Prepare <span class="highlight">2 boxes of Stovetop Stuffing</span> according to package directions</li>
+                <li>Typically: Bring specified amount of water and butter to boil</li>
+                <li>Remove from heat, stir in stuffing mix</li>
+                <li>Let stand 5 minutes</li>
+                <li>Transfer to oven-safe dish</li>
+                <li>Cover with foil and set aside</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Will reheat at 4:15 PM for 25 minutes at 350°F</strong></p>
+        </div>
+
+        <div id="time-0200" class="detail-section">
+            <h3>2:00 PM - Green Bean Casserole</h3>
+            <ul>
+                <li><strong>Fresh beans:</strong> Trim 2 lbs green beans, blanch in boiling water 5 minutes, drain</li>
+                <li><strong>OR canned:</strong> Drain 4 cans (15 oz each) green beans</li>
+                <li>In large bowl, mix beans with:</li>
+                <li style="padding-left: 50px;">2 cans (10.5 oz each) cream of mushroom soup</li>
+                <li style="padding-left: 50px;">1 cup milk</li>
+                <li style="padding-left: 50px;">1 cup shredded cheddar cheese</li>
+                <li style="padding-left: 50px;">Salt and pepper to taste</li>
+                <li>Transfer to greased 9x13 pan</li>
+                <li>Top with <span class="highlight">1.5 cups french fried onions</span></li>
+                <li>Cover with foil and refrigerate</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Will bake at 4:15 PM for 25 minutes at 350°F</strong></p>
+        </div>
+
+        <div id="time-0230" class="detail-section">
+            <h3>2:30 PM - Cranberry Sauce</h3>
+            <ul>
+                <li>In medium saucepan, combine:</li>
+                <li style="padding-left: 50px;">12 oz fresh cranberries (1 bag)</li>
+                <li style="padding-left: 50px;">1 cup sugar</li>
+                <li style="padding-left: 50px;">1 cup water</li>
+                <li>Bring to boil over medium-high heat</li>
+                <li>Reduce to simmer</li>
+                <li>Cook 10-15 minutes until berries pop and sauce thickens</li>
+                <li>Remove from heat and let cool</li>
+                <li>Transfer to serving bowl and refrigerate</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Serve cold or at room temperature</strong></p>
+        </div>
+
+        <div id="time-0300" class="detail-section">
+            <h3>3:00 PM - Mashed Potatoes</h3>
+            <ul>
+                <li>Peel and cube <span class="highlight">5 lbs potatoes</span> (Russet or Yukon Gold work best)</li>
+                <li>Place in large pot and cover with cold water</li>
+                <li>Add 1 tablespoon salt to water</li>
+                <li>Bring to boil, then reduce to simmer</li>
+                <li>Cook 15-20 minutes until fork-tender</li>
+                <li>Drain thoroughly and return to pot</li>
+                <li>Mash with potato masher or use mixer</li>
+                <li>Add: 1/2 cup butter (cubed), 1 cup warm milk or cream</li>
+                <li>Mix until smooth and creamy</li>
+                <li>Season with salt and pepper to taste</li>
+                <li>Transfer to oven-safe serving dish, cover with foil</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Will reheat at 4:15 PM for 25 minutes at 350°F</strong></p>
+        </div>
+
+        <div id="time-0345" class="detail-section">
+            <h3>3:45 PM - Shape Bread</h3>
+            <ul>
+                <li>Remove risen dough from refrigerator</li>
+                <li>Shape into dinner rolls or a loaf as desired</li>
+                <li>Place on greased baking sheet or in loaf pan</li>
+                <li>Let rest at room temperature for 15 minutes</li>
+                <li>Set aside until 4:15 PM</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Will bake in toaster oven at 4:15 PM</strong></p>
+        </div>
+
+        <div id="time-0400" class="detail-section">
+            <h3>4:00 PM - Oven Coordination (CRITICAL TIME!)</h3>
+            <ul>
+                <li><span class="highlight">Check turkey temperature</span> - insert thermometer in thickest part of thigh</li>
+                <li>If 165°F or higher: Remove turkey from oven!</li>
+                <li>Tent turkey with foil and let rest (20-30 minutes minimum)</li>
+                <li>Increase <span class="highlight">main oven temperature to 350°F</span></li>
+                <li>Preheat <span class="highlight">second oven to 350°F</span></li>
+                <li><strong>Place in ovens:</strong></li>
+                <li style="padding-left: 50px;">Main oven: Sweet potato casserole (uncovered, 30 min)</li>
+                <li style="padding-left: 50px;">Second oven: Homemade stuffing (uncovered, 30 min)</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Note:</strong> If turkey isn't quite ready, wait 15 minutes and check again. Adjust remaining timeline accordingly.</p>
+        </div>
+
+        <div id="time-0415" class="detail-section">
+            <h3>4:15 PM - Final Baking Push</h3>
+            <ul>
+                <li>Add to available oven space (both ovens at 350°F):</li>
+                <li style="padding-left: 50px;">Green bean casserole (uncovered, 25 min)</li>
+                <li style="padding-left: 50px;">Stovetop stuffing (covered, 25 min)</li>
+                <li style="padding-left: 50px;">Mashed potatoes (covered with foil, 25 min)</li>
+                <li><strong>Toaster oven/Air Fryer:</strong></li>
+                <li style="padding-left: 50px;">Bread rolls or loaf (375°F, 20-25 minutes until golden)</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Set timer for 25 minutes!</strong> Everything will finish at 4:40 PM</p>
+        </div>
+
+        <div id="time-0430" class="detail-section">
+            <h3>4:30 PM - Make Gravy</h3>
+            <ul>
+                <li>Pour turkey drippings from roasting pan into fat separator or measuring cup</li>
+                <li>Let fat rise to top, skim off excess (or use as is for richer gravy)</li>
+                <li>In saucepan, melt <span class="highlight">1/4 cup butter</span></li>
+                <li>Whisk in <span class="highlight">1/4 cup flour</span> to make roux</li>
+                <li>Cook 1-2 minutes, stirring constantly, until golden</li>
+                <li>Gradually whisk in 3 cups liquid (drippings + chicken broth to make 3 cups)</li>
+                <li>Bring to simmer, whisking constantly</li>
+                <li>Simmer 5-7 minutes until thickened</li>
+                <li>Season with salt and pepper to taste</li>
+                <li>Transfer to gravy boat or serving bowl</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Keep warm on low heat or in microwave until serving</strong></p>
+        </div>
+
+        <div id="time-0445" class="detail-section">
+            <h3>4:45 PM - Final Assembly</h3>
+            <ul>
+                <li>Remove all dishes from ovens</li>
+                <li>Remove foil from covered dishes</li>
+                <li>Check bread - should be golden brown</li>
+                <li><span class="highlight">Carve turkey:</span></li>
+                <li style="padding-left: 50px;">Remove legs and thighs</li>
+                <li style="padding-left: 50px;">Slice breast meat</li>
+                <li style="padding-left: 50px;">Arrange on serving platter</li>
+                <li>Transfer all side dishes to serving bowls/platters</li>
+                <li>Place cranberry sauce in serving bowl</li>
+                <li>Put butter on table for bread</li>
+                <li>Do final check - everything ready to go!</li>
+            </ul>
+        </div>
+
+        <div id="time-0500" class="detail-section">
+            <h3>5:00 PM - SERVE & ENJOY! 🦃</h3>
+            <ul>
+                <li>Set out all dishes buffet-style or place on table</li>
+                <li>Let guests serve themselves</li>
+                <li>Enjoy your perfectly timed Thanksgiving feast!</li>
+                <li>Remember: dishes will stay warm for 15-20 minutes</li>
+            </ul>
+            <p style="margin-top: 15px; font-size: 1.2em; text-align: center; color: #8B4513;"><strong>🎉 Happy Thanksgiving! 🎉</strong></p>
+        </div>
+
+        <!-- Recipes Section -->
+        <div class="recipe-section" id="recipes">
+            <h2 style="color: #8B4513; margin-bottom: 20px;">📖 Complete Recipe Details</h2>
+            
+            <div class="recipe-card">
+                <h4>🦃 TURKEY (15 lbs, Pre-Seasoned)</h4>
+                <p><strong>Cooking Time:</strong> 7 hours at 325°F (approximately 28 minutes per pound)</p>
+                <p><strong>Done When:</strong> Internal temperature reaches 165°F in thickest part of thigh</p>
+                <p><strong>Resting:</strong> Let rest 20-30 minutes before carving for juiciest results</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>🥔 MASHED POTATOES</h4>
+                <ul class="ingredients">
+                    <li>5 lbs potatoes (Russet or Yukon Gold), peeled and cubed</li>
+                    <li>1/2 cup butter</li>
+                    <li>1 cup warm milk or cream</li>
+                    <li>Salt and pepper to taste</li>
+                </ul>
+                <p><strong>Instructions:</strong> Boil potatoes until tender (15-20 min), drain, mash with butter and milk until smooth, season to taste.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>🥬 GREEN BEAN CASSEROLE</h4>
+                <ul class="ingredients">
+                    <li>2 lbs fresh green beans (or 4 15-oz cans, drained)</li>
+                    <li>2 10.5-oz cans cream of mushroom soup</li>
+                    <li>1 cup milk</li>
+                    <li>1 cup shredded cheddar cheese</li>
+                    <li>1.5 cups french fried onions</li>
+                    <li>Salt and pepper to taste</li>
+                </ul>
+                <p><strong>Instructions:</strong> Mix all ingredients except onions, transfer to 9x13 pan, top with onions. Bake 25 min at 350°F.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>🍠 SWEET POTATO CASSEROLE</h4>
+                <p><strong>Base:</strong></p>
+                <ul class="ingredients">
+                    <li>4 lbs sweet potatoes, peeled and cubed</li>
+                    <li>1/2 cup butter</li>
+                    <li>1/2 cup brown sugar</li>
+                    <li>2 eggs, beaten</li>
+                    <li>1 tsp vanilla extract</li>
+                </ul>
+                <p><strong>Topping:</strong></p>
+                <ul class="ingredients">
+                    <li>1 cup brown sugar</li>
+                    <li>1/2 cup all-purpose flour</li>
+                    <li>1/3 cup melted butter</li>
+                    <li>1 cup chopped pecans</li>
+                </ul>
+                <p><strong>Instructions:</strong> Boil sweet potatoes until tender, mash with butter, sugar, eggs, and vanilla. Spread in 9x13 pan. Mix topping ingredients, sprinkle over sweet potatoes. Bake 30 min at 350°F.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>🍞 HOMEMADE STUFFING</h4>
+                <ul class="ingredients">
+                    <li>1 large loaf bread (12-16 cups cubed)</li>
+                    <li>1/2 cup butter</li>
+                    <li>2 cups diced onions</li>
+                    <li>2 cups diced celery</li>
+                    <li>2 tsp dried sage</li>
+                    <li>1 tsp dried thyme</li>
+                    <li>2-3 cups chicken broth</li>
+                    <li>Salt and pepper to taste</li>
+                </ul>
+                <p><strong>Instructions:</strong> Toast bread cubes at 250°F for 15 min. Sauté onions and celery in butter until soft, add herbs. Combine with bread cubes and broth. Bake 30 min at 350°F.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>📦 STOVETOP STUFFING</h4>
+                <ul class="ingredients">
+                    <li>2 boxes Stovetop Stuffing Mix</li>
+                    <li>Follow package directions for water and butter</li>
+                </ul>
+                <p><strong>Instructions:</strong> Prepare according to package directions. Transfer to oven-safe dish, cover and reheat at 350°F for 25 minutes.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>🍒 CRANBERRY SAUCE</h4>
+                <ul class="ingredients">
+                    <li>12 oz fresh cranberries (1 bag)</li>
+                    <li>1 cup sugar</li>
+                    <li>1 cup water</li>
+                </ul>
+                <p><strong>Instructions:</strong> Combine all ingredients in saucepan. Bring to boil, reduce to simmer. Cook 10-15 minutes until berries pop and sauce thickens. Cool and refrigerate.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>🍖 TURKEY GRAVY</h4>
+                <ul class="ingredients">
+                    <li>Turkey drippings from roasting pan</li>
+                    <li>1/4 cup butter</li>
+                    <li>1/4 cup all-purpose flour</li>
+                    <li>3 cups liquid (drippings + chicken broth)</li>
+                    <li>Salt and pepper to taste</li>
+                </ul>
+                <p><strong>Instructions:</strong> Melt butter, whisk in flour to make roux. Gradually add liquid, whisking constantly. Simmer 5-7 minutes until thickened. Season to taste.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>🥖 BREAD</h4>
+                <p><strong>Your prepared, risen dough</strong></p>
+                <p><strong>Instructions:</strong> Shape into rolls or loaf, let rest 15 minutes. Bake at 375°F for 20-25 minutes until golden brown.</p>
+            </div>
+        </div>
+
+        <!-- Equipment & Tips -->
+        <div class="recipe-section">
+            <h2 style="color: #8B4513; margin-bottom: 20px;">🔧 Equipment Checklist</h2>
+            
+            <div class="recipe-card">
+                <h4>Large Items Needed</h4>
+                <ul class="ingredients">
+                    <li>Large roasting pan with rack (for turkey)</li>
+                    <li>Three 9x13 baking dishes (casseroles & stuffings)</li>
+                    <li>Large pot for potatoes</li>
+                    <li>Large pot for sweet potatoes</li>
+                    <li>Medium pot for green beans (if using fresh)</li>
+                    <li>Saucepan for gravy</li>
+                    <li>Large mixing bowls (2-3)</li>
+                </ul>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Tools Needed</h4>
+                <ul class="ingredients">
+                    <li>Potato masher or mixer</li>
+                    <li>Whisk</li>
+                    <li>Wooden spoons</li>
+                    <li>Sharp knife & cutting board</li>
+                    <li>Measuring cups & spoons</li>
+                    <li>Colander</li>
+                    <li>Meat thermometer (essential!)</li>
+                    <li>Aluminum foil</li>
+                    <li>Serving dishes & utensils</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="recipe-section">
+            <h2 style="color: #8B4513; margin-bottom: 20px;">🔥 Oven Strategy</h2>
+            
+            <div class="recipe-card">
+                <h4>10:00 AM - 4:00 PM: Main Oven Only</h4>
+                <p>325°F - Turkey cooking alone</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>4:00 PM - 4:30 PM: Both Ovens at 350°F</h4>
+                <p><strong>Main Oven:</strong> Sweet potato casserole (30 min)</p>
+                <p><strong>Second Oven:</strong> Homemade stuffing (30 min)</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>4:15 PM - 4:40 PM: Full Oven Utilization</h4>
+                <p>Add to available space in both ovens:</p>
+                <ul class="ingredients">
+                    <li>Green bean casserole (25 min)</li>
+                    <li>Stovetop stuffing (25 min)</li>
+                    <li>Mashed potatoes (25 min)</li>
+                </ul>
+                <p><strong>Toaster Oven:</strong> Bread (375°F, 20-25 min)</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Emergency Backup</h4>
+                <p><strong>Microwave:</strong> Use only for quick reheating if needed</p>
+            </div>
+        </div>
+
+        <div class="recipe-section">
+            <h2 style="color: #8B4513; margin-bottom: 20px;">💡 Tips for Success</h2>
+            
+            <div class="recipe-card">
+                <ul class="ingredients">
+                    <li>✅ Start turkey on time - it's your anchor dish and takes the longest</li>
+                    <li>✅ Use the 6+ hours of turkey cooking time to prep all vegetables and casseroles</li>
+                    <li>✅ Keep casseroles covered with foil until final baking to retain heat</li>
+                    <li>✅ Check turkey temperature at 4:00 PM - better to have extra resting time</li>
+                    <li>✅ Label covered dishes with sticky notes so you know what's what</li>
+                    <li>✅ Have all serving dishes ready and on counter before final 30 minutes</li>
+                    <li>✅ Make gravy while other dishes are finishing in ovens</li>
+                    <li>✅ If ovens are full, mashed potatoes hold heat well when covered</li>
+                    <li>✅ Everything can sit covered for 10-15 minutes without getting cold</li>
+                    <li>✅ Don't stress if timing shifts by 15 minutes - food is forgiving!</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <script>
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scroll and highlight for navigation links
+        document.querySelectorAll('a[href^="#time-"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Hide all detail sections
+                document.querySelectorAll('.detail-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show target section
+                targetElement.classList.add('active');
+                
+                // Scroll to target
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>

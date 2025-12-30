@@ -1,0 +1,283 @@
+.letter-grid-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-image: url('/strands/NE_ALL_STAR_BG.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+@media (max-width: 640px) {
+  .letter-grid-container {
+    align-items: center;
+  }
+}
+
+.word-display {
+  margin-bottom: 10px;
+  display: flex;
+  height: 48px;
+  width: 288px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+}
+
+.word-display.small-text {
+  font-size: 24px;
+}
+
+.submit-button-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  justify-content: center;
+  min-height: 44px; /* Reserve space to prevent layout shift */
+  align-items: center;
+}
+
+.button-placeholder {
+  height: 44px;
+  width: 100%;
+}
+
+.submit-word-button,
+.clear-word-button {
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 100px;
+}
+
+.submit-word-button {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.submit-word-button:hover {
+  background-color: #1f2937;
+}
+
+.submit-word-button:active {
+  transform: scale(0.95);
+}
+
+.clear-word-button {
+  background-color: #E74C3C;
+  color: #FFFFFF;
+}
+
+.clear-word-button:hover {
+  background-color: #C0392B;
+}
+
+.clear-word-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 640px) {
+  .submit-button-container {
+    gap: 6px;
+    min-height: 38px; /* Slightly smaller on mobile */
+  }
+
+  .button-placeholder {
+    height: 38px;
+  }
+
+  .submit-word-button,
+  .clear-word-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    min-width: 80px;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+
+.letter-button {
+  margin: 5px;
+  display: flex;
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #000000;
+  transition: background-color 0.2s;
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  /* Better touch target for mobile */
+  touch-action: none;
+}
+
+@media (max-width: 640px) {
+  .letter-button {
+    height: 44px;
+    width: 44px;
+    padding: 22px;
+    margin: 4px;
+  }
+}
+
+.letter-button.hint-dashed {
+  border: 2px dashed #49a8c6;
+}
+
+.letter-button.red-selected {
+  background-color: #FF6B6B;
+  border: 1px solid #FF6B6B;
+}
+
+/* Different shades of blue for each word */
+.letter-button.blue-selected-0 {
+  background-color: #E3F2FD;
+  border: 1px solid #E3F2FD;
+}
+
+.letter-button.blue-selected-1 {
+  background-color: #BBDEFB;
+  border: 1px solid #BBDEFB;
+}
+
+.letter-button.blue-selected-2 {
+  background-color: #90CAF9;
+  border: 1px solid #90CAF9;
+}
+
+.letter-button.blue-selected-3 {
+  background-color: #64B5F6;
+  border: 1px solid #64B5F6;
+}
+
+.letter-button.blue-selected-4 {
+  background-color: #42A5F5;
+  border: 1px solid #42A5F5;
+}
+
+.letter-button.blue-selected-5 {
+  background-color: #2196F3;
+  border: 1px solid #2196F3;
+}
+
+.letter-button.blue-selected-6 {
+  background-color: #1E88E5;
+  border: 1px solid #1E88E5;
+}
+
+.letter-button.brown-selected {
+  background-color: #DBD8C5;
+}
+
+/* Modal popup styles */
+.word-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.word-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: fadeInScale 0.3s ease-out;
+  min-width: 200px;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.word-popup-red {
+  background-color: #FF6B6B;
+}
+
+.word-popup-blue-0 {
+  background-color: #E3F2FD;
+}
+
+.word-popup-blue-1 {
+  background-color: #BBDEFB;
+}
+
+.word-popup-blue-2 {
+  background-color: #90CAF9;
+}
+
+.word-popup-blue-3 {
+  background-color: #64B5F6;
+}
+
+.word-popup-blue-4 {
+  background-color: #42A5F5;
+}
+
+.word-popup-blue-5 {
+  background-color: #2196F3;
+}
+
+.word-popup-blue-6 {
+  background-color: #1E88E5;
+}
+
+.word-popup-emoji {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.word-popup-word {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.word-popup-progress {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}

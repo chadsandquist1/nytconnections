@@ -1,0 +1,62 @@
+.jeopardy-clue-container {
+    width: 50vw;
+    height: 50vh;
+    padding: 0 4rem;
+    position: absolute;
+    left: calc(100vw - 75%);
+    top: 20%;
+    display: flex;
+    align-items: center;
+    background-color: blue;
+    border: 10px solid black;
+    z-index: 1;
+}
+
+.jeopardy-clue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    height: 150px;
+    padding: 2rem;
+}
+
+.dollar-value {
+    font-size: 4rem;
+    background-color: blue;
+    color: rgb(215,160,75);
+    font-weight: 800;
+}
+
+.reset-button {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 15%;
+    height: 15%;
+    min-width: 30px;
+    min-height: 30px;
+    background-color: transparent;
+    border: 2px solid rgb(215,160,75);
+    border-radius: 4px;
+    color: rgb(215,160,75);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.reset-button:hover {
+    background-color: rgba(215,160,75, 0.2);
+    transform: scale(1.1);
+}
+
+.reset-button:active {
+    transform: scale(0.95);
+}
