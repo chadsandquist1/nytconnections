@@ -8,8 +8,16 @@ const LetterGrid = ({
   setShowHint,
   setStr,
   gameData,
+  config,
 }) => {
   const { spangramWord, spangram, letters, ansCoordinates, ansWords } = gameData;
+  const feedbackConfig = config?.ui?.game?.feedback || {};
+  const tooShortText = feedbackConfig.tooShort || "Too short";
+  const notInWordListText = feedbackConfig.notInWordList || "NOT IN WORD LIST";
+  const spangramText = feedbackConfig.spangram || "SPANGRAM!";
+  const submitButtonText = feedbackConfig.submitButtonText || "Submit Word";
+  const clearButtonText = feedbackConfig.clearButtonText || "Clear";
+  const messageDuration = feedbackConfig.messageDuration || 2;
   const [selectedLetters, setSelectedLetters] = useState("");
   const [selectedIds, setSelectedIds] = useState([]);
   const [foundWords, setFoundWords] = useState([]); // Array of {wordIndex, coordinates}
@@ -128,8 +136,8 @@ const LetterGrid = ({
       });
     };
     if (currentLength <= 3) {
-      setSelectedLetters("Too short");
-      clearSelectedLetters(1);
+      setSelectedLetters(tooShortText);
+      clearSelectedLetters(messageDuration);
     } else if (
       checkArrayMatch(selectedIds, ansCoordinates) &&
       ansWords.includes(selectedLetters)
@@ -150,7 +158,7 @@ const LetterGrid = ({
       checkArrayMatch(selectedIds, spangram) &&
       spangramWord === selectedLetters
     ) {
-      setSelectedLetters("SPANGRAM!");
+      setSelectedLetters(spangramText);
       setWordsFound((wordsFound) => wordsFound + 1);
       setStr((prevStr) => prevStr + "🟡");
       setSelectedRedIds(selectedIds);
@@ -164,10 +172,10 @@ const LetterGrid = ({
       clearSelectedLetters(3);
     } else if (wordList.includes(selectedLetters)) {
       setHintCount((hintCount) => hintCount + 1);
-      clearSelectedLetters(1);
+      clearSelectedLetters(messageDuration);
     } else {
-      setSelectedLetters("NOT IN WORD LIST");
-      clearSelectedLetters(1);
+      setSelectedLetters(notInWordListText);
+      clearSelectedLetters(messageDuration);
     }
   };
 
@@ -241,17 +249,17 @@ const LetterGrid = ({
           </div>
         </div>
       )}
-      <div className={`word-display ${selectedLetters === "NOT IN WORD LIST" ? "small-text" : ""}`}>
+      <div className={`word-display ${selectedLetters === notInWordListText ? "small-text" : ""}`}>
         {selectedLetters}
       </div>
       <div className="submit-button-container">
-        {selectedLetters.length > 0 && selectedLetters !== "Too short" && selectedLetters !== "NOT IN WORD LIST" && selectedLetters !== "SPANGRAM!" ? (
+        {selectedLetters.length > 0 && selectedLetters !== tooShortText && selectedLetters !== notInWordListText && selectedLetters !== spangramText ? (
           <>
             <button className="submit-word-button" onClick={checkWordList}>
-              Submit Word
+              {submitButtonText}
             </button>
             <button className="clear-word-button" onClick={() => { setSelectedLetters(""); setSelectedIds([]); }}>
-              Clear
+              {clearButtonText}
             </button>
           </>
         ) : (

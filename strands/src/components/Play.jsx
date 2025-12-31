@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LetterGrid from "./LetterGrid";
 import Tracker from "./Tracker";
+import CelebrationOverlay from "./CelebrationOverlay";
 import "./Play.css";
 
 const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
@@ -8,8 +9,8 @@ const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
   const [hintsUsed, setHintsUsed] = useState(0);
   const [wordsFound, setWordsFound] = useState(0);
   const [showHint, setShowHint] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
   const [showCompletionPopup, setShowCompletionPopup] = useState(false);
-  const [copySuccess, setCopySuccess] = useState(false);
   const [str, setStr] = useState("");
 
   const completionConfig = config?.ui?.completion || {};
@@ -23,10 +24,17 @@ const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
   useEffect(() => {
     if (wordsFound === totalWords) {
       timer(1, () => {
-        setShowCompletionPopup(true);
+        // Show celebration overlay first
+        setShowCelebration(true);
       });
     }
   }, [wordsFound, totalWords]);
+
+  const handleCelebrationComplete = () => {
+    // After celebration is done (6 seconds), show completion popup
+    setShowCelebration(false);
+    setShowCompletionPopup(true);
+  };
 
   const characters = Array.from(str);
   const strEdited = characters.reduce((acc, curr, index) => {
@@ -36,30 +44,6 @@ const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
     }
     return acc;
   }, []);
-
-  const strEdited2 = () => {
-    const characters = Array.from(str);
-    let result = "";
-    for (let i = 0; i < characters.length; i++) {
-      result += characters[i];
-      if ((i + 1) % 4 === 0 && i + 1 !== characters.length) {
-        result += "\n";
-      }
-    }
-    return result;
-  };
-
-  const shareText = (completionConfig.shareTextTemplate || 'Strands #84\n"Deviled eggs anyone?"\n{emojiString}')
-    .replace('{emojiString}', strEdited2());
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(shareText);
-      setCopySuccess(true);
-    } catch (err) {
-      setCopySuccess(false);
-    }
-  };
 
   const completionMessage = (completionConfig.messageTemplate || 'Nice job finding the theme words 🔵 and <br />Spangram 🟡. You used {hintsUsed} hints 💡.')
     .replace('{hintsUsed}', hintsUsed);
@@ -89,9 +73,15 @@ const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
             setShowHint={setShowHint}
             setStr={setStr}
             gameData={gameData}
+            config={config}
           />
         </div>
       </div>
+      <CelebrationOverlay
+        show={showCelebration}
+        onComplete={handleCelebrationComplete}
+        duration={6000}
+      />
       {showCompletionPopup && (
         <div className="completion-overlay">
           <div className="completion-popup">
@@ -114,12 +104,6 @@ const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
             </div>
             <p className="completion-message" dangerouslySetInnerHTML={{ __html: completionMessage }} />
             <div className="completion-buttons">
-              <button
-                onClick={copyToClipboard}
-                className="share-button"
-              >
-                {copySuccess ? (completionConfig.shareButtonCopied || "Copied!") : (completionConfig.shareButtonText || "Share Your Results")}
-              </button>
               <button
                 className="close-popup-button"
                 onClick={() => setShowCompletionPopup(false)}

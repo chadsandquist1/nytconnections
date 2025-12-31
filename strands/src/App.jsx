@@ -48,7 +48,8 @@ function App() {
   };
 
   const handleBackToMenu = () => {
-    setGameStarted(false);
+    // Navigate to the root home page
+    window.location.href = '/';
   };
 
   return (
