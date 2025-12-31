@@ -1,16 +1,106 @@
-# React + Vite
+# Strands Puzzle Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based implementation of a Strands-style word puzzle game featuring the All Star Cheer theme.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interactive 8x6 letter grid
+- Spangram with L-shaped path (NORTHERN)
+- 7 theme words related to All Star Cheer
+- Celebration animations on completion
+- Mobile-responsive design
 
-## React Compiler
+## Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Setup
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Run Tests
+
+```bash
+npm test
+```
+
+### Run Validation Tests Only
+
+```bash
+npm test tests/validatePuzzle.test.js
+```
+
+## Git Hooks Setup
+
+This project includes a pre-commit hook that automatically validates the puzzle configuration before allowing commits. This ensures that all puzzle changes maintain valid adjacency rules and coordinate uniqueness.
+
+### Installing the Pre-commit Hook
+
+1. Navigate to the strands directory:
+   ```bash
+   cd /path/to/strands
+   ```
+
+2. Configure git to use the custom hooks directory:
+   ```bash
+   git config core.hooksPath .git-hooks
+   ```
+
+3. Verify the hook is executable:
+   ```bash
+   chmod +x .git-hooks/pre-commit
+   ```
+
+### What the Hook Does
+
+The pre-commit hook runs automatically before each commit and:
+- ✅ Validates puzzle grid dimensions (8x6)
+- ✅ Checks all words spell correctly from grid coordinates
+- ✅ Verifies adjacency rules (8-directional)
+- ✅ Ensures no coordinate reuse (all 48 cells used exactly once)
+- ✅ Confirms NORTHERN spangram has an L-shaped turn
+
+If any validation fails, the commit will be blocked until issues are fixed.
+
+### Manual Validation
+
+You can manually run the validation tests at any time:
+
+```bash
+npm test tests/validatePuzzle.test.js
+```
+
+## Puzzle Configuration
+
+The puzzle is configured in `public/strands-config.json`. It includes:
+- **Grid**: 8x6 letter grid
+- **Spangram**: NORTHERN (8 letters with L-turn)
+- **Theme Words**: FRENZY, RAMPAGE, RIPTIDE, SMACK, FIRE, SPARKS, SHADE
+
+### Puzzle Rules
+
+1. All 48 cells must be used exactly once
+2. Each word's coordinates must be adjacent (8-directional: horizontal, vertical, diagonal)
+3. No coordinate can be reused across words
+4. The spangram must span from one edge to another with at least one turn
+
+## Deployment
+
+The app is deployed to AWS S3. To sync:
+
+```bash
+npm run build
+aws s3 sync dist/ s3://your-bucket-name/strands/ --delete
+```
