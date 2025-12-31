@@ -1,0 +1,24 @@
+#!/bin/bash
+# Pre-commit hook for Strands puzzle validation
+# Runs validation tests before allowing commits
+
+set -e
+
+echo "🔍 Running Strands puzzle validation..."
+
+# Check if we're in the strands directory
+if [ ! -f "public/strands-config.json" ]; then
+    echo "❌ Error: strands-config.json not found. Are you in the strands directory?"
+    exit 1
+fi
+
+# Run the validation tests
+npm run test -- tests/validatePuzzle.test.js
+
+if [ $? -eq 0 ]; then
+    echo "✅ Puzzle validation passed!"
+    exit 0
+else
+    echo "❌ Puzzle validation failed! Please fix the issues before committing."
+    exit 1
+fi
