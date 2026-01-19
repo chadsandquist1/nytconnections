@@ -8,11 +8,13 @@ function App() {
 
   const handleStateClick = (stateCode) => {
     setSelectedState(stateCode)
-    // Scroll to the state in the list
-    const element = document.getElementById(`state-${stateCode}`)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }
+    // Use setTimeout to ensure DOM is updated before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(`state-${stateCode}`)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    }, 50)
   }
 
   const handleStateNameClick = (stateName) => {
@@ -34,9 +36,9 @@ function App() {
     <div className="app">
       <div className="map-section">
         <USAMap
-          customize={customStates}
-          width="100%"
-          height="auto"
+          customStates={customStates}
+          width="1000"
+          height="600"
         />
       </div>
 

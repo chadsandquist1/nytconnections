@@ -1,0 +1,144 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  overscroll-behavior: none;
+  padding-top: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin: 0 auto 10px auto;
+  font-size: 1.75rem;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 auto 5px auto;
+  font-size: 1.5rem;
+}
+
+h3 {
+  text-align: center;
+  margin: 0 auto 15px auto;
+}
+
+section {
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+section:hover {
+  cursor: pointer;
+}
+
+section:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  -webkit-user-drag: none;
+}
+
+main {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 15px;
+  padding-top: max(10px, env(safe-area-inset-top));
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+}
+
+@media (min-width: 640px) {
+  main {
+    max-width: 500px;
+  }
+}
+
+article {
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  margin: 0 auto 5px auto;
+}
+
+section {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (max-width: 768px) {
+  article {
+    gap: 6px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}

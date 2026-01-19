@@ -32,20 +32,19 @@ body {
   margin: 0 auto;
 }
 
-/* States List - Full Width, Scrollable */
+/* States List - Full Width */
 .states-list {
   width: 100%;
   background: white;
   padding: 40px 60px;
-  flex: 1;
 }
 
 .states-list > ul {
   list-style: none;
   max-width: 1400px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
@@ -78,6 +77,16 @@ body {
   display: block;
   margin-bottom: 10px;
   color: #3c3b6e;
+}
+
+.state-name {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.state-name:hover {
+  color: #b22234;
+  text-decoration: underline;
 }
 
 .states-list > ul > li.selected strong {
@@ -143,13 +152,6 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-  .states-list > ul {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 15px;
-  }
-}
-
 @media (max-width: 768px) {
   .map-section {
     padding: 30px 20px;
@@ -160,7 +162,6 @@ body {
   }
 
   .states-list > ul {
-    grid-template-columns: 1fr;
     gap: 12px;
   }
 
