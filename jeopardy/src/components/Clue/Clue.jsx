@@ -39,13 +39,15 @@ const Clue = ({ value, clue }) => {
             onClick={handleClick}
         >
             { content }
-            <button
-                className="reset-button"
-                onClick={handleReset}
-                aria-label="Reset clue"
-            >
-                ↺
-            </button>
+            {stage > 0 && (
+                <button
+                    className="reset-button"
+                    onClick={handleReset}
+                    aria-label="Reset clue"
+                >
+                    ↺
+                </button>
+            )}
         </div>
     )
 }

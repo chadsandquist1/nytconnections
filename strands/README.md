@@ -1,106 +1,62 @@
-# Strands Puzzle Game
+This is a simple application that hosts multiple react apps.
 
-A React-based implementation of a Strands-style word puzzle game featuring the All Star Cheer theme.
+There is TF folder that is used to deploy the application using terraform.  IMPORTANT: NEVER CHECKIN THE .tfstate file to source control or git.
 
-## Features
-
-- Interactive 8x6 letter grid
-- Spangram with L-shaped path (NORTHERN)
-- 7 theme words related to All Star Cheer
-- Celebration animations on completion
-- Mobile-responsive design
-
-## Development
-
-### Setup
-
-```bash
-npm install
-```
-
-### Run Development Server
-
-```bash
-npm run dev
-```
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Run Tests
-
-```bash
-npm test
-```
-
-### Run Validation Tests Only
-
-```bash
-npm test tests/validatePuzzle.test.js
-```
-
-## Git Hooks Setup
-
-This project includes a pre-commit hook that automatically validates the puzzle configuration before allowing commits. This ensures that all puzzle changes maintain valid adjacency rules and coordinate uniqueness.
-
-### Installing the Pre-commit Hook
-
-1. Navigate to the strands directory:
-   ```bash
-   cd /path/to/strands
-   ```
-
-2. Configure git to use the custom hooks directory:
-   ```bash
-   git config core.hooksPath .git-hooks
-   ```
-
-3. Verify the hook is executable:
-   ```bash
-   chmod +x .git-hooks/pre-commit
-   ```
-
-### What the Hook Does
-
-The pre-commit hook runs automatically before each commit and:
-- ✅ Validates puzzle grid dimensions (8x6)
-- ✅ Checks all words spell correctly from grid coordinates
-- ✅ Verifies adjacency rules (8-directional)
-- ✅ Ensures no coordinate reuse (all 48 cells used exactly once)
-- ✅ Confirms NORTHERN spangram has an L-shaped turn
-
-If any validation fails, the commit will be blocked until issues are fixed.
-
-### Manual Validation
-
-You can manually run the validation tests at any time:
-
-```bash
-npm test tests/validatePuzzle.test.js
-```
-
-## Puzzle Configuration
-
-The puzzle is configured in `public/strands-config.json`. It includes:
-- **Grid**: 8x6 letter grid
-- **Spangram**: NORTHERN (8 letters with L-turn)
-- **Theme Words**: FRENZY, RAMPAGE, RIPTIDE, SMACK, FIRE, SPARKS, SHADE
-
-### Puzzle Rules
-
-1. All 48 cells must be used exactly once
-2. Each word's coordinates must be adjacent (8-directional: horizontal, vertical, diagonal)
-3. No coordinate can be reused across words
-4. The spangram must span from one edge to another with at least one turn
-
-## Deployment
-
-The app is deployed to AWS S3. To sync:
-
-```bash
-npm run build
-aws s3 sync dist/ s3://your-bucket-name/strands/ --delete
-```
+RULES OF STRANDS:
+Here are the UI/interaction rules from a React developer perspective:
+- The game board is a 6x8 grid (48 total cells) of letter components
+- Each cell contains a single uppercase letter as a clickable element
+- Cells have at least three states: default, selected, and locked (part of found word)
+- Users can click individual cells to select them and build a word path
+- Selected cells should visually indicate they're part of the current selection (different background color/border)
+- Cells are selectable only if they're adjacent to the last selected cell (8-directional adjacency)
+- First click can be any cell in the grid, subsequent clicks must be adjacent to the previously selected cell
+- Adjacent means horizontally, vertically, or diagonally neighboring (up to 8 possible neighbors per cell)
+- IMPORTANT: The found words need to be adjacent and in order.  For example, ENVY must be in the order of E, N, V, Y in that order and adjacency
+- IMPORTANT: Found word coordinate letters can only be used ONCE.
+- IMPORTANT: WHEN making the grid layout, its preferred that the found words can only be found once in the grid.  in other words, if I see "FIRE" it should only be found in one spot on the board, no other combinations of letters could make another FIRE sequence.
+- Corner cells have 3 neighbors, edge cells have 5 neighbors, interior cells have 8 neighbors
+- Users can click a previously selected cell to deselect it and all cells selected after it (backtracking)
+- Double-clicking the last selected cell submits the current word selection
+- There should be a submit button as an alternative to double-clicking
+- Selected cells should display in order of selection (visual connection/path)
+- The path between selected cells should be visually clear (line connector or sequential highlighting)
+- Once a word is found and validated, those cells lock and change to a distinct "found" state (blue highlight)
+- Try to use a different shade of blue for each completed word
+- Locked cells cannot be selected again for new words
+- Words can go in any direction: left to right, up to down, right to left, down to up, diagonally, and don't have to be in a straight line
+- The spangram cells get a different locked state (yellow/gold highlight instead of blue)
+- There should be a clear/deselect button to reset the current selection without submitting
+- The interface needs a hint button that reveals letters sequentially when activated
+- Hint activation should highlight or reveal specific cells in the grid that belong to an unfound word
+- All 48 cells must eventually transition to a locked state when puzzle is complete
+- The grid should prevent selection patterns that violate adjacency rules (disable non-adjacent cells)
+- Visual feedback should indicate why a cell isn't selectable (grayed out/disabled state)
+- The current word being formed should display above or below the grid as user selects
+- A success animation should play when a valid word is found and locked into the grid
+- The game displays a theme/category hint at the top (e.g., "Types of dance" or "Things in a kitchen")
+- There is exactly one spangram that touches opposite sides of the grid and relates to the theme
+- The spangram must span from one edge to the opposite edge (top-to-bottom or left-to-right)
+- There are typically 6-8 theme words plus 1 spangram (7-9 total words to find)
+- Invalid word submissions should show error feedback (shake animation, error message, or red flash)
+- Word validation should check against a predetermined word list (not dictionary-based)
+- Only specific theme-related words are valid submissions, random valid English words won't work
+- State management should track: selected cells array, found words array, locked cells set, current selection string
+- Each word found should increment a counter showing progress (e.g., "3 of 7 words found")
+- When all words are found, display a completion message/modal
+- The spangram is typically found last and serves as a "bonus" that helps complete the puzzle
+- Clicking an already-locked cell should have no effect (preventDefault to avoid unintended actions)
+- The hint system should have a limited number of uses (typically 3-5 hints per puzzle)
+- Each hint reveals one letter of an unfound word, prioritizing the longest remaining words
+- Words must be at least 4 letters long to be valid submissions
+- The game should persist state to localStorage so users can return to incomplete puzzles
+- Visual indicators should show which cells belong to which found word (color-coding or numbering)
+- Mouse hover states should preview which cells are selectable from current position
+- Touch/mobile support requires different event handlers (touchstart, touchmove, touchend)
+- Prevent text selection on the grid during interaction (user-select: none)
+- The spangram reveal should have special animation/celebration when found
+- Game completion should show statistics: time taken, hints used, total words found
+- Each puzzle should have a unique puzzle ID for sharing/tracking purposes
+- The theme hint can be progressively revealed if users struggle (show more specific hints)
+- Failed submission animations should be brief (2000ms) to avoid frustrating rapid attemptsClaude is AI and can make mistakes. Please double-check responses.
+- A success animation should play when a valid word is found and locked into the grid

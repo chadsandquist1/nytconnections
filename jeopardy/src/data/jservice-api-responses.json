@@ -9,7 +9,7 @@
         },
         {
           "id": 102,
-          "title": "Travelers Corporation Trivia"
+          "title": "Claude Tips"
         },
         {
           "id": 103,
@@ -25,7 +25,7 @@
         },
         {
           "id": 106,
-          "title": "History of Computing"
+          "title": "Prompt Engineering"
         }
       ],
       "clues": {
@@ -33,14 +33,14 @@
           {
             "id": 1001,
             "question": "This AWS storage service is like a file folder in the cloud",
-            "answer": "S3 (Simple Storage Service)",
+            "answer": "S3",
             "value": 200,
             "category_id": 101
           },
           {
             "id": 1002,
             "question": "This AWS service lets you rent virtual computers in the cloud",
-            "answer": "EC2 (Elastic Compute Cloud)",
+            "answer": "EC2",
             "value": 400,
             "category_id": 101
           },
@@ -54,14 +54,14 @@
           {
             "id": 1004,
             "question": "This AWS database service is fully managed and handles the setup for you",
-            "answer": "RDS (Relational Database Service)",
+            "answer": "RDS",
             "value": 800,
             "category_id": 101
           },
           {
             "id": 1005,
             "question": "This AWS service automatically distributes incoming traffic across multiple targets",
-            "answer": "Elastic Load Balancing (or ELB)",
+            "answer": "ELB",
             "value": 1000,
             "category_id": 101
           }
@@ -69,36 +69,36 @@
         "102": [
           {
             "id": 1006,
-            "question": "This iconic symbol has been Travelers' logo since 1959",
-            "answer": "Red Umbrella",
+            "question": "Type this slash command to clear your chat history and start over",
+            "answer": "/clear",
             "value": 200,
             "category_id": 102
           },
           {
             "id": 1007,
-            "question": "Travelers Insurance Company was founded in this year",
-            "answer": "1864",
+            "question": "This slash command shows you all available Claude Code commands",
+            "answer": "/help",
             "value": 400,
             "category_id": 102
           },
           {
             "id": 1008,
-            "question": "In 1897, Travelers issued the first insurance policy for this type of vehicle",
-            "answer": "Automobile (or Car)",
+            "question": "Use this keyboard shortcut to add new lines without sending your message",
+            "answer": "Shift+Enter",
             "value": 600,
             "category_id": 102
           },
           {
             "id": 1009,
-            "question": "Travelers' largest office is located in this Connecticut city",
-            "answer": "Hartford",
+            "question": "Type this word to close Claude Code and return to your terminal",
+            "answer": "exit",
             "value": 800,
             "category_id": 102
           },
           {
             "id": 1010,
-            "question": "In the late 1960s, Travelers issued the first insurance for this space program",
-            "answer": "Apollo (program)",
+            "question": "This file in your project directory gives Claude custom instructions for your codebase",
+            "answer": "CLAUDE.md",
             "value": 1000,
             "category_id": 102
           }
@@ -135,7 +135,7 @@
           {
             "id": 1015,
             "question": "This architecture style uses events to trigger communication between services",
-            "answer": "Event-Driven Architecture",
+            "answer": "Event-Driven",
             "value": 1000,
             "category_id": 103
           }
@@ -158,7 +158,7 @@
           {
             "id": 1018,
             "question": "ChatGPT is an example of this type of AI model that generates text",
-            "answer": "Large Language Model (or LLM)",
+            "answer": "LLM",
             "value": 600,
             "category_id": 104
           },
@@ -172,7 +172,7 @@
           {
             "id": 1020,
             "question": "This type of neural network is particularly good at processing images",
-            "answer": "Convolutional Neural Network (or CNN)",
+            "answer": "CNN",
             "value": 1000,
             "category_id": 104
           }
@@ -188,14 +188,14 @@
           {
             "id": 1022,
             "question": "This AWS service is similar to a database that stores structured data in tables",
-            "answer": "DynamoDB (or RDS)",
+            "answer": "DynamoDB",
             "value": 400,
             "category_id": 105
           },
           {
             "id": 1023,
-            "question": "This company's red umbrella logo first appeared in advertising in 1870",
-            "answer": "Travelers",
+            "question": "This popular version control system was created by Linus Torvalds in 2005",
+            "answer": "Git",
             "value": 600,
             "category_id": 105
           },
@@ -209,7 +209,7 @@
           {
             "id": 1025,
             "question": "An API is this type of interface that lets programs talk to each other",
-            "answer": "Application Programming Interface",
+            "answer": "API",
             "value": 1000,
             "category_id": 105
           }
@@ -217,36 +217,36 @@
         "106": [
           {
             "id": 1026,
-            "question": "This tech giant was founded by Bill Gates and Paul Allen in 1975",
-            "answer": "Microsoft",
+            "question": "This prompting technique gives Claude a single example before asking it to perform a task",
+            "answer": "One-shot",
             "value": 200,
             "category_id": 106
           },
           {
             "id": 1027,
-            "question": "The first computer programmer was this woman who worked with Charles Babbage",
-            "answer": "Ada Lovelace",
+            "question": "When prompting Claude, providing these specific instances helps illustrate your desired output format",
+            "answer": "Examples",
             "value": 400,
             "category_id": 106
           },
           {
             "id": 1028,
-            "question": "In 1989, Tim Berners-Lee invented this system for sharing information",
-            "answer": "The World Wide Web (or WWW)",
+            "question": "Ask Claude to enter this mode when you want it to plan implementation before writing code",
+            "answer": "Plan mode",
             "value": 600,
             "category_id": 106
           },
           {
             "id": 1029,
-            "question": "This early computer from the 1940s weighed 30 tons and filled a room",
-            "answer": "ENIAC",
+            "question": "This technique asks Claude to explain its reasoning step-by-step before giving an answer",
+            "answer": "Chain of thought",
             "value": 800,
             "category_id": 106
           },
           {
             "id": 1030,
-            "question": "Apple's first personal computer, released in 1976, was called this",
-            "answer": "Apple I (or Apple 1)",
+            "question": "Configure these in Claude Code to automatically run commands when events like file edits occur",
+            "answer": "Hooks",
             "value": 1000,
             "category_id": 106
           }
@@ -262,7 +262,7 @@
         },
         {
           "id": 202,
-          "title": "Travelers Corporation Trivia"
+          "title": "Claude Tips"
         },
         {
           "id": 203,
@@ -278,7 +278,7 @@
         },
         {
           "id": 206,
-          "title": "History of Computing"
+          "title": "Prompt Engineering"
         }
       ],
       "clues": {
@@ -314,7 +314,7 @@
           {
             "id": 2005,
             "question": "This AWS identity service manages user access and permissions",
-            "answer": "IAM (Identity and Access Management)",
+            "answer": "IAM",
             "value": 1000,
             "category_id": 201
           }
@@ -322,36 +322,36 @@
         "202": [
           {
             "id": 2006,
-            "question": "James Batterson founded Travelers in this Connecticut city",
-            "answer": "Hartford",
+            "question": "Claude Code runs in this type of interface that uses text commands",
+            "answer": "CLI",
             "value": 200,
             "category_id": 202
           },
           {
             "id": 2007,
-            "question": "Before the red umbrella, Travelers' logo was this suit of protective gear",
-            "answer": "Knight's Armor",
+            "question": "Use this slash command when you need to configure line breaks in VS Code",
+            "answer": "/terminal-setup",
             "value": 400,
             "category_id": 202
           },
           {
             "id": 2008,
-            "question": "Travelers became part of the Dow Jones in this year",
-            "answer": "2009",
+            "question": "Use this slash command to compress your conversation history and save tokens",
+            "answer": "/compact",
             "value": 600,
             "category_id": 202
           },
           {
             "id": 2009,
-            "question": "In 1919, Travelers issued the first policy for this type of travel",
-            "answer": "Air Travel (or Aviation)",
+            "question": "Use this slash command to export your entire chat conversation to your clipboard",
+            "answer": "/copy",
             "value": 800,
             "category_id": 202
           },
           {
             "id": 2010,
-            "question": "Travelers merged with this financial company in 1998",
-            "answer": "Citigroup",
+            "question": "Tell Claude this when you need help fixing a bug in your code",
+            "answer": "debug",
             "value": 1000,
             "category_id": 202
           }
@@ -360,7 +360,7 @@
           {
             "id": 2011,
             "question": "This design principle means writing code once and using it many times",
-            "answer": "DRY (Don't Repeat Yourself)",
+            "answer": "DRY",
             "value": 200,
             "category_id": 203
           },
@@ -373,15 +373,15 @@
           },
           {
             "id": 2013,
-            "question": "This pattern lets you observe changes in an object and notify others",
-            "answer": "Observer Pattern",
+            "question": "In MVC, this component handles user input and updates the Model and View",
+            "answer": "Controller",
             "value": 600,
             "category_id": 203
           },
           {
             "id": 2014,
-            "question": "APIs that follow REST principles are called this",
-            "answer": "RESTful APIs",
+            "question": "This nickname of four authors wrote the famous 'Design Patterns' book in 1994",
+            "answer": "Gang of Four",
             "value": 800,
             "category_id": 203
           },
@@ -411,7 +411,7 @@
           {
             "id": 2018,
             "question": "This AI system can understand and generate human language",
-            "answer": "NLP (Natural Language Processing)",
+            "answer": "NLP",
             "value": 600,
             "category_id": 204
           },
@@ -447,8 +447,8 @@
           },
           {
             "id": 2023,
-            "question": "Travelers' stonecutter founder had this first name",
-            "answer": "James",
+            "question": "This markup language uses opening and closing tags to structure web content",
+            "answer": "HTML",
             "value": 600,
             "category_id": 205
           },
@@ -462,7 +462,7 @@
           {
             "id": 2025,
             "question": "Deep learning uses networks with many of these processing layers",
-            "answer": "Layers (or Hidden Layers)",
+            "answer": "Layers",
             "value": 1000,
             "category_id": 205
           }
@@ -470,36 +470,36 @@
         "206": [
           {
             "id": 2026,
-            "question": "This punch card system from the 1800s was an early form of programming",
-            "answer": "Jacquard Loom",
+            "question": "This technique involves giving Claude a few examples of desired input-output pairs",
+            "answer": "Few-shot prompting",
             "value": 200,
             "category_id": 206
           },
           {
             "id": 2027,
-            "question": "IBM introduced this first personal computer in 1981",
-            "answer": "IBM PC",
+            "question": "Breaking complex tasks into these smaller, sequential steps improves accuracy",
+            "answer": "Subtasks",
             "value": 400,
             "category_id": 206
           },
           {
             "id": 2028,
-            "question": "This British mathematician is considered the father of computer science",
-            "answer": "Alan Turing",
+            "question": "This prompting method tells Claude to first think through the problem internally",
+            "answer": "Chain of thought prompting",
             "value": 600,
             "category_id": 206
           },
           {
             "id": 2029,
-            "question": "The first computer mouse was invented in this decade",
-            "answer": "1960s",
+            "question": "Providing Claude with this type of context about your project improves task completion",
+            "answer": "Background information",
             "value": 800,
             "category_id": 206
           },
           {
             "id": 2030,
-            "question": "Grace Hopper developed this first compiler in 1952",
-            "answer": "A-0 (or the first compiler)",
+            "question": "This advanced technique asks Claude to verify its own output before finalizing",
+            "answer": "Self-verification",
             "value": 1000,
             "category_id": 206
           }
@@ -515,7 +515,7 @@
         },
         {
           "id": 302,
-          "title": "Travelers Corporation Trivia"
+          "title": "Claude Tips"
         },
         {
           "id": 303,
@@ -531,7 +531,7 @@
         },
         {
           "id": 306,
-          "title": "History of Computing"
+          "title": "Prompt Engineering"
         }
       ],
       "clues": {
@@ -539,7 +539,7 @@
           {
             "id": 3001,
             "question": "This AWS messaging service sends notifications to subscribers",
-            "answer": "SNS (Simple Notification Service)",
+            "answer": "SNS",
             "value": 200,
             "category_id": 301
           },
@@ -560,14 +560,14 @@
           {
             "id": 3004,
             "question": "This AWS service creates private networks in the cloud",
-            "answer": "VPC (Virtual Private Cloud)",
+            "answer": "VPC",
             "value": 800,
             "category_id": 301
           },
           {
             "id": 3005,
             "question": "This AWS container service runs Docker applications",
-            "answer": "ECS (Elastic Container Service)",
+            "answer": "ECS",
             "value": 1000,
             "category_id": 301
           }
@@ -575,36 +575,36 @@
         "302": [
           {
             "id": 3006,
-            "question": "Travelers sold the first two-cent accident policy to a banker in this year",
-            "answer": "1864",
+            "question": "Simply say this word to ask Claude to describe what code does",
+            "answer": "explain",
             "value": 200,
             "category_id": 302
           },
           {
             "id": 3007,
-            "question": "Travelers established the first private weather research facility in this decade",
-            "answer": "1950s",
+            "question": "Use this slash command to switch between different Claude models like Sonnet or Haiku",
+            "answer": "/model",
             "value": 400,
             "category_id": 302
           },
           {
             "id": 3008,
-            "question": "During World War II, Travelers underwrote this atomic bomb project",
-            "answer": "Manhattan Project",
+            "question": "Claude AI was first launched by Anthropic in this year",
+            "answer": "2023",
             "value": 600,
             "category_id": 302
           },
           {
             "id": 3009,
-            "question": "Travelers' current headquarters are in this major city",
-            "answer": "New York City",
+            "question": "Claude can read this special notebook format that data scientists use",
+            "answer": "Jupyter notebooks",
             "value": 800,
             "category_id": 302
           },
           {
             "id": 3010,
-            "question": "Travelers is incorporated in this northern U.S. state",
-            "answer": "Minnesota",
+            "question": "Type this symbol followed by a filename to add files to Claude's context in your prompt",
+            "answer": "@",
             "value": 1000,
             "category_id": 302
           }
@@ -612,8 +612,8 @@
         "303": [
           {
             "id": 3011,
-            "question": "This software layer sits between the operating system and applications",
-            "answer": "Middleware",
+            "question": "This architectural approach separates the user interface from the data and business logic",
+            "answer": "Separation of Concerns",
             "value": 200,
             "category_id": 303
           },
@@ -633,14 +633,14 @@
           },
           {
             "id": 3014,
-            "question": "This approach stores different data types in separate databases",
-            "answer": "Polyglot Persistence",
+            "question": "This practice moves testing and quality checks earlier in the development lifecycle",
+            "answer": "Shift left",
             "value": 800,
             "category_id": 303
           },
           {
             "id": 3015,
-            "question": "This pattern separates data access logic from business logic",
+            "question": "This pattern separates database access logic from business logic",
             "answer": "Repository Pattern",
             "value": 1000,
             "category_id": 303
@@ -649,8 +649,8 @@
         "304": [
           {
             "id": 3016,
-            "question": "This type of AI can perform only one specific task",
-            "answer": "Narrow AI (or Weak AI)",
+            "question": "AI is short for these two words",
+            "answer": "Artificial Intelligence",
             "value": 200,
             "category_id": 304
           },
@@ -663,7 +663,7 @@
           },
           {
             "id": 3018,
-            "question": "This type of AI can generate new images or text from prompts",
+            "question": "This type of AI can create new images or text from prompts",
             "answer": "Generative AI",
             "value": 600,
             "category_id": 304
@@ -700,14 +700,14 @@
           },
           {
             "id": 3023,
-            "question": "This insurance company founder was a stonecutter by trade",
-            "answer": "James Batterson",
+            "question": "This database query language is used to retrieve and manipulate data in relational databases",
+            "answer": "SQL",
             "value": 600,
             "category_id": 305
           },
           {
             "id": 3024,
-            "question": "MVC separates data, display, and this control component",
+            "question": "In MVC, this C separates data and the display",
             "answer": "Controller",
             "value": 800,
             "category_id": 305
@@ -723,36 +723,36 @@
         "306": [
           {
             "id": 3027,
-            "question": "Steve Jobs and Steve Wozniak founded this company in 1976",
-            "answer": "Apple",
+            "question": "Being this way with your prompts helps Claude give you better answers",
+            "answer": "Context or Clarity",
             "value": 200,
             "category_id": 306
           },
           {
             "id": 3028,
-            "question": "This programming language was created for teaching and named after a snake",
-            "answer": "Python",
+            "question": "Providing these in your prompt helps Claude understand exactly what output you want",
+            "answer": "Examples",
             "value": 400,
             "category_id": 306
           },
           {
             "id": 3029,
-            "question": "Linux was created by this Finnish programmer in 1991",
-            "answer": "Linus Torvalds",
+            "question": "This prompt framework uses Role, Input, Context, and Expectation to structure effective prompts",
+            "answer": "RICE",
             "value": 600,
             "category_id": 306
           },
           {
             "id": 3030,
-            "question": "This is the 2014 biographical thriller about Alan Turing and his role in WWII",
-            "answer": "The Imitation Game",
+            "question": "This technique uses negative examples showing what NOT to do alongside positive examples",
+            "answer": "Contrastive prompting",
             "value": 800,
             "category_id": 306
           },
           {
             "id": 3026,
-            "question": "This visionary dreamed up the Analytical Engine in the 1830s",
-            "answer": "Charles Babbage",
+            "question": "This technique provides Claude with relevant documents or data before asking questions about them",
+            "answer": "RAG",
             "value": 1000,
             "category_id": 306
           }

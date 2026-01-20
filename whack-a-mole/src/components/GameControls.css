@@ -1,21 +1,22 @@
 .game-controls-container {
   padding: 0;
-  margin-top: 0;
+  margin-top: 4px;
   width: 100%;
+  flex-shrink: 0;
 }
 
 .navigation-buttons {
   display: flex;
   flex-direction: row;
-  gap: 10px;
-  margin-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 4px;
 }
 
 .nav-button {
   flex: 1;
-  padding: 10px 12px;
+  padding: 8px 10px;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   color: #ffffff;
   border: none;
@@ -48,23 +49,39 @@
 
 .score-display {
   text-align: center;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .score-display p {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
   color: #fff;
   margin: 0;
 }
 
-@media (max-width: 640px) {
+@media (max-height: 700px) {
   .nav-button {
-    font-size: 13px;
-    padding: 9px 10px;
+    font-size: 12px;
+    padding: 6px 8px;
   }
 
   .score-display p {
-    font-size: 14px;
+    font-size: 12px;
+  }
+
+  .navigation-buttons {
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+}
+
+@media (min-width: 640px) {
+  .nav-button {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+
+  .score-display p {
+    font-size: 16px;
   }
 }

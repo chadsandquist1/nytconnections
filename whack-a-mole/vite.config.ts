@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react-swc'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/whack-a-mole/',
+  base: '/whack-a-mole/dist/',
   plugins: [react()]
 })
