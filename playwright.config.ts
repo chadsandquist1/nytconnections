@@ -60,11 +60,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run dev',
+    command: 'npx http-server . -p 8000 -c-1',
     url: 'http://localhost:8000',
     reuseExistingServer: !process.env.CI,
-    env: {
-      VITE_CONNECTIONS_CONFIG_DIR: '/connections-test',
-    },
   },
 });

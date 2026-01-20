@@ -227,7 +227,7 @@ export default function App() {
             </div>
           </div>
         )}
-        <div style={{ position: 'relative', flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
           <article>
           {holes.map((isHole, index) => (
             <section
@@ -252,7 +252,7 @@ export default function App() {
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.85)',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -260,21 +260,22 @@ export default function App() {
               borderRadius: '8px',
               zIndex: 10
             }}>
-              <h2 style={{ marginBottom: '12px', fontSize: '1.3rem' }}>Pet-a-Pup!</h2>
-              <p style={{ marginBottom: '16px', textAlign: 'center', padding: '0 16px', fontSize: '0.95rem' }}>
+              <h2 style={{ marginBottom: '12px', fontSize: '1.5rem', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>Pet-a-Pup!</h2>
+              <p style={{ marginBottom: '16px', textAlign: 'center', padding: '0 16px', fontSize: '1rem', textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
                 Pet as many pups as you can in 60 seconds!
               </p>
               <button
                 onClick={handleStartGame}
                 style={{
-                  padding: '12px 32px',
-                  fontSize: '1.1rem',
+                  padding: '14px 36px',
+                  fontSize: '1.2rem',
                   fontWeight: 'bold',
                   backgroundColor: '#4CAF50',
                   color: 'white',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
                   transition: 'transform 0.1s ease, background-color 0.2s ease'
                 }}
                 onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#45a049'}
