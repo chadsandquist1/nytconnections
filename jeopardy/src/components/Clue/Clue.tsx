@@ -49,7 +49,7 @@ const Clue: React.FC<ClueProps> = ({ value, clue }) => {
                     onClick={handleReset}
                     aria-label="Reset clue"
                 >
-                    \u21ba
+                    ↺
                 </button>
             )}
         </div>

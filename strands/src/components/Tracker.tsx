@@ -34,10 +34,10 @@ const Tracker: React.FC<TrackerProps> = ({
     <div className="tracker-container">
       <div className="navigation-buttons">
         <button onClick={onBackToMenu} className="nav-button back-to-menu">
-          \u2190 Back to Menu
+          ← Back to Menu
         </button>
         <button onClick={onRestartGame} className="nav-button restart-game">
-          \u21bb Restart Game
+          ↻ Restart Game
         </button>
       </div>
       <div className="theme-card">

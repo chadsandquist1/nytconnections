@@ -97,7 +97,7 @@ const Play: React.FC<PlayProps> = ({ config, gameData, onRestartGame, onBackToMe
               className="close-button"
               onClick={() => setShowCompletionPopup(false)}
             >
-              {completionConfig.backToPuzzleText || "Back to puzzle \u00d7"}
+              {completionConfig.backToPuzzleText || "Back to puzzle ×"}
             </button>
             <h3 className="completion-title">
               {completionConfig.title || "WOO HOO! YOU COMPLETED THE PUZZLE!"}

@@ -14,8 +14,8 @@ export interface BackToHomeProps {
 export const BackToHome: React.FC<BackToHomeProps> = ({
   showBackButton = true,
   showRestartButton = false,
-  backLabel = '\u2190 Back to Menu',
-  restartLabel = '\u21bb Restart',
+  backLabel = '← Back to Menu',
+  restartLabel = '↻ Restart',
   onBack,
   onRestart,
   position = 'top-left',

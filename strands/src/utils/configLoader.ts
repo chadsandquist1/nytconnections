@@ -78,7 +78,7 @@ const getDefaultConfig = (): StrandsConfig => {
         shareButtonText: "Share Your Results",
         shareButtonCopied: "Copied!",
         closeButtonText: "Close",
-        backToPuzzleText: "Back to puzzle \u00d7",
+        backToPuzzleText: "Back to puzzle ×",
         messageTemplate: "Nice job finding the theme words 🔵 and <br />Spangram 🟡. You used {hintsUsed} hints 💡.",
         shareTextTemplate: "Strands #1\n\"DEFAULT\"\n{emojiString}"
       }

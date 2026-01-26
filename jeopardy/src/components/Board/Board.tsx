@@ -58,13 +58,13 @@ const Board: React.FC = () => {
             <BackToHome />
             <div className="board-controls">
                 <button className="nav-button" onClick={handlePreviousBoard}>
-                    \u2190 Previous Board
+                    ← Previous Board
                 </button>
                 <div className="board-info">
                     Game Board {currentBoard + 1} of 3
                 </div>
                 <button className="nav-button" onClick={handleNextBoard}>
-                    Next Board \u2192
+                    Next Board →
                 </button>
             </div>
             <div className="new-game-container">
