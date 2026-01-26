@@ -2,9 +2,17 @@ import React, { useState, useEffect } from "react";
 import LetterGrid from "./LetterGrid";
 import Tracker from "./Tracker";
 import CelebrationOverlay from "./CelebrationOverlay";
+import type { StrandsConfig, GameData } from "../types";
 import "./Play.css";
 
-const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
+interface PlayProps {
+  config: StrandsConfig;
+  gameData: GameData;
+  onRestartGame: () => void;
+  onBackToMenu: () => void;
+}
+
+const Play: React.FC<PlayProps> = ({ config, gameData, onRestartGame, onBackToMenu }) => {
   const [hintCount, setHintCount] = useState(0);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [wordsFound, setWordsFound] = useState(0);
@@ -17,7 +25,7 @@ const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
   const gameConfig = config?.ui?.game || {};
   const totalWords = gameConfig.totalWords || 8;
 
-  const timer = (seconds, callback) => {
+  const timer = (seconds: number, callback: () => void) => {
     setTimeout(callback, seconds * 1000);
   };
 
@@ -37,7 +45,7 @@ const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
   };
 
   const characters = Array.from(str);
-  const strEdited = characters.reduce((acc, curr, index) => {
+  const strEdited = characters.reduce<(string | React.ReactElement)[]>((acc, curr, index) => {
     acc.push(curr);
     if ((index + 1) % 4 === 0 && index + 1 !== characters.length) {
       acc.push(<br key={index} />);
@@ -46,7 +54,7 @@ const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
   }, []);
 
   const completionMessage = (completionConfig.messageTemplate || 'Nice job finding the theme words 🔵 and <br />Spangram 🟡. You used {hintsUsed} hints 💡.')
-    .replace('{hintsUsed}', hintsUsed);
+    .replace('{hintsUsed}', String(hintsUsed));
 
   return (
     <div className="play-container">
@@ -89,7 +97,7 @@ const Play = ({ config, gameData, onRestartGame, onBackToMenu }) => {
               className="close-button"
               onClick={() => setShowCompletionPopup(false)}
             >
-              {completionConfig.backToPuzzleText || "Back to puzzle ×"}
+              {completionConfig.backToPuzzleText || "Back to puzzle \u00d7"}
             </button>
             <h3 className="completion-title">
               {completionConfig.title || "WOO HOO! YOU COMPLETED THE PUZZLE!"}

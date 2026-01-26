@@ -1,4 +1,6 @@
-export const statesData = {
+import type { StatesDataMap } from './types';
+
+export const statesData: StatesDataMap = {
   AL: { name: 'Alabama', capital: 'Montgomery', population: '5,074,296' },
   AK: { name: 'Alaska', capital: 'Juneau', population: '733,583' },
   AZ: { name: 'Arizona', capital: 'Phoenix', population: '7,359,197' },

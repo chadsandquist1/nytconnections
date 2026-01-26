@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import Category from '../Category/Category.jsx'
+import Category from '../Category/Category'
+import { BackToHome } from '@shared/components'
 import './Board.css'
-import { fetchCategories, fetchClues } from '../../services/mockJService.js'
+import { fetchCategories, fetchClues } from '../../services/mockJService'
+import type { JeopardyCategory } from '../../types'
 
-function Board() {
-    const [categories, setCategories] = useState([]);
+const Board: React.FC = () => {
+    const [categories, setCategories] = useState<JeopardyCategory[]>([]);
     const [currentBoard, setCurrentBoard] = useState(0);
 
     // Function to load a specific game board
-    const loadBoard = async (boardIndex) => {
+    const loadBoard = async (boardIndex: number) => {
         // Fetch the categories from the mock service
         const categoryData = await fetchCategories(6, boardIndex);
 
@@ -53,15 +55,16 @@ function Board() {
 
     return (
         <div>
+            <BackToHome />
             <div className="board-controls">
                 <button className="nav-button" onClick={handlePreviousBoard}>
-                    ← Previous Board
+                    \u2190 Previous Board
                 </button>
                 <div className="board-info">
                     Game Board {currentBoard + 1} of 3
                 </div>
                 <button className="nav-button" onClick={handleNextBoard}>
-                    Next Board →
+                    Next Board \u2192
                 </button>
             </div>
             <div className="new-game-container">

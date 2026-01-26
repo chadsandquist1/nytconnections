@@ -1,0 +1,37 @@
+:root {
+  /* Primary palette (purple gradient from index.html) */
+  --app-primary: #667eea;
+  --app-secondary: #764ba2;
+  --app-accent: #f9df6d;
+
+  /* Backgrounds */
+  --app-bg-dark: #242424;
+  --app-bg-light: #ffffff;
+
+  /* Text */
+  --app-text-light: #ffffff;
+  --app-text-dark: #1a1a1a;
+  --app-text-muted: #666666;
+
+  /* Spacing */
+  --app-spacing-xs: 4px;
+  --app-spacing-sm: 8px;
+  --app-spacing-md: 16px;
+  --app-spacing-lg: 24px;
+  --app-spacing-xl: 40px;
+
+  /* Typography */
+  --app-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --app-font-size-sm: 0.875rem;
+  --app-font-size-base: 1rem;
+  --app-font-size-lg: 1.25rem;
+  --app-font-size-xl: 1.5rem;
+
+  /* Border radius */
+  --app-radius-sm: 4px;
+  --app-radius-md: 8px;
+  --app-radius-lg: 16px;
+
+  /* Transitions */
+  --app-transition: 0.3s ease;
+}

@@ -1,12 +1,16 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react'
-import Clue from '../Clue/Clue.jsx'
+import Clue from '../Clue/Clue'
 import './Category.css'
+import type { JeopardyCategory } from '../../types'
 
-const Category = ({ category }) => {
+interface CategoryProps {
+    category: JeopardyCategory;
+}
+
+const Category: React.FC<CategoryProps> = ({ category }) => {
     const values = [200, 400, 600, 800, 1000]
 
-    const toTitleCase = (str) => {
+    const toTitleCase = (str: string): string => {
         return str
             .split(' ')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())

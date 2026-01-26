@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import './Clue.css'
+import type { JeopardyClue } from '../../types'
 
-const Clue = ({ value, clue }) => {
+interface ClueProps {
+    value: number;
+    clue: JeopardyClue | undefined;
+}
+
+const Clue: React.FC<ClueProps> = ({ value, clue }) => {
     const [stage, setStage] = useState(0)
     const [toggle, setToggle] = useState(false)
 
@@ -10,30 +16,28 @@ const Clue = ({ value, clue }) => {
         setToggle(true)
     }
 
-    const handleReset = (e) => {
+    const handleReset = (e: React.MouseEvent) => {
         e.stopPropagation()
         setStage(0)
         setToggle(false)
     }
 
-    let content
-    let className
+    let content: React.ReactNode
+    let className: string
     if (stage === 0) {
         content = `$${value}`
         className = `jeopardy-clue dollar-value`
     } else if (stage === 1) {
         content = <p className='jeopardy-clue-container'>{clue ? clue.question : null}</p>
         className = `jeopardy-clue`
-    } else if (stage === 2) {
+    } else {
         content = <p>{clue ? clue.answer : null}</p>
         className = `jeopardy-clue`
     }
 
-
-
     return (
         <div className={className} style={{
-            prespective: toggle ? '7em' : '',
+            perspective: toggle ? '7em' : undefined,
             position: 'relative'
             }}
             onClick={handleClick}
@@ -45,7 +49,7 @@ const Clue = ({ value, clue }) => {
                     onClick={handleReset}
                     aria-label="Reset clue"
                 >
-                    ↺
+                    \u21ba
                 </button>
             )}
         </div>

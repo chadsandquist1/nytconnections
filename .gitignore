@@ -38,3 +38,18 @@ TF/.terraform/
 TF/*.tfstate
 TF/*.tfstate.backup
 TF/.terraform.lock.hcl
+*.tfvars
+
+# Secrets and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+*credentials*
+*.secret
+.aws/
+
+# Additional security
+.env*
+!.env.example

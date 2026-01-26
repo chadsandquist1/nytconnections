@@ -1,13 +1,19 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/jeopardy/',  // Set base path for deployment to /jeopardy/ subdirectory
+  base: '/jeopardy/',
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@shared': path.resolve(__dirname, '../shared'),
+    },
+  },
   server: {
     proxy: {
       '/api': 'http://localhost:5000'
     }
   },
-  plugins: [react()],
 })

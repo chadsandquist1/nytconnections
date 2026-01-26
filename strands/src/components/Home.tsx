@@ -1,7 +1,12 @@
-import React from "react";
+import type { StrandsConfig } from "../types";
 import "./Home.css";
 
-const Home = ({ onStartGame, config }) => {
+interface HomeProps {
+  onStartGame: () => void;
+  config: StrandsConfig;
+}
+
+const Home: React.FC<HomeProps> = ({ onStartGame, config }) => {
   const homeConfig = config?.ui?.home || {};
 
   return (

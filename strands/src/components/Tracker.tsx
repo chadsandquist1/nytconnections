@@ -1,7 +1,21 @@
 import React from "react";
+import type { StrandsConfig } from "../types";
 import "./Tracker.css";
 
-const Tracker = ({
+interface TrackerProps {
+  hintCount: number;
+  setHintCount: React.Dispatch<React.SetStateAction<number>>;
+  setHintsUsed: React.Dispatch<React.SetStateAction<number>>;
+  wordsFound: number;
+  setShowHint: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowCompletionPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  setStr: React.Dispatch<React.SetStateAction<string>>;
+  config: StrandsConfig;
+  onRestartGame: () => void;
+  onBackToMenu: () => void;
+}
+
+const Tracker: React.FC<TrackerProps> = ({
   hintCount,
   setHintCount,
   setHintsUsed,
@@ -20,10 +34,10 @@ const Tracker = ({
     <div className="tracker-container">
       <div className="navigation-buttons">
         <button onClick={onBackToMenu} className="nav-button back-to-menu">
-          ← Back to Menu
+          \u2190 Back to Menu
         </button>
         <button onClick={onRestartGame} className="nav-button restart-game">
-          ↻ Restart Game
+          \u21bb Restart Game
         </button>
       </div>
       <div className="theme-card">

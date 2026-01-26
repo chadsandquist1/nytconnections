@@ -1,19 +1,27 @@
 import { useEffect, useState } from 'react';
+import type { GifPosition, CelebrationData } from '../types';
 
 const animations = ['float', 'pulse'];
 
-const getRandomSize = (isMobile = false) => {
+const getRandomSize = (isMobile = false): number => {
   if (isMobile) {
     return 60 + Math.random() * 80; // 60-140px on mobile
   }
   return 80 + Math.random() * 120; // 80-200px on desktop
 };
 
-const getRandomAnimation = () => {
+const getRandomAnimation = (): string => {
   return animations[Math.floor(Math.random() * animations.length)];
 };
 
-const calculateOverlapPercentage = (box1, box2) => {
+interface Box {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+
+const calculateOverlapPercentage = (box1: Box, box2: Box): number => {
   const x1 = Math.max(box1.left, box2.left);
   const y1 = Math.max(box1.top, box2.top);
   const x2 = Math.min(box1.left + box1.width, box2.left + box2.width);
@@ -31,7 +39,7 @@ const calculateOverlapPercentage = (box1, box2) => {
   return (overlapArea / smallerArea) * 100;
 };
 
-const isInCenterZone = (box, viewportWidth, viewportHeight) => {
+const isInCenterZone = (box: Box, viewportWidth: number, viewportHeight: number): boolean => {
   // Define center zone as middle 30% of screen (35% to 65% on both axes)
   const centerLeft = viewportWidth * 0.35;
   const centerRight = viewportWidth * 0.65;
@@ -50,7 +58,7 @@ const isInCenterZone = (box, viewportWidth, viewportHeight) => {
   );
 };
 
-const findNonOverlappingPosition = (size, existingBoxes, maxAttempts = 50) => {
+const findNonOverlappingPosition = (size: number, existingBoxes: Box[], maxAttempts = 50): { top: number; left: number } => {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
@@ -58,7 +66,7 @@ const findNonOverlappingPosition = (size, existingBoxes, maxAttempts = 50) => {
     const top = Math.random() * (viewportHeight - size);
     const left = Math.random() * (viewportWidth - size);
 
-    const newBox = { top, left, width: size, height: size };
+    const newBox: Box = { top, left, width: size, height: size };
 
     // Check if position is in the center zone (avoid text area)
     if (isInCenterZone(newBox, viewportWidth, viewportHeight)) {
@@ -90,14 +98,20 @@ const findNonOverlappingPosition = (size, existingBoxes, maxAttempts = 50) => {
   return edgePositions[Math.floor(Math.random() * edgePositions.length)];
 };
 
-const CelebrationOverlay = ({ show, onComplete, duration = 6000 }) => {
-  const [gifPositions, setGifPositions] = useState([]);
+interface CelebrationOverlayProps {
+  show: boolean;
+  onComplete: () => void;
+  duration?: number;
+}
+
+const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({ show, onComplete, duration = 6000 }) => {
+  const [gifPositions, setGifPositions] = useState<GifPosition[]>([]);
 
   useEffect(() => {
     const loadGifs = async () => {
       try {
         const response = await fetch('./celebration_overlay_gif.json');
-        const data = await response.json();
+        const data: CelebrationData = await response.json();
 
         const allGifs = data.celebration_overlays;
 
@@ -113,8 +127,8 @@ const CelebrationOverlay = ({ show, onComplete, duration = 6000 }) => {
         const shuffledGifs = [...allGifs].sort(() => Math.random() - 0.5);
         const selectedGifs = shuffledGifs.slice(0, Math.min(count, allGifs.length));
 
-        const positions = [];
-        const existingBoxes = [];
+        const positions: GifPosition[] = [];
+        const existingBoxes: Box[] = [];
 
         selectedGifs.forEach((url, index) => {
           const size = getRandomSize(isMobile);

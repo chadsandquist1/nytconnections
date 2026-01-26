@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { USAMap } from '@mirawision/usa-map-react'
 import { statesData } from './statesData'
+import type { CustomStatesMap } from './types'
 import './App.css'
 
-function App() {
-  const [selectedState, setSelectedState] = useState(null)
+const App: React.FC = () => {
+  const [selectedState, setSelectedState] = useState<string | null>(null)
 
-  const handleStateClick = (stateCode) => {
+  const handleStateClick = (stateCode: string) => {
     setSelectedState(stateCode)
     // Use setTimeout to ensure DOM is updated before scrolling
     setTimeout(() => {
@@ -17,14 +18,14 @@ function App() {
     }, 50)
   }
 
-  const handleStateNameClick = (stateName) => {
+  const handleStateNameClick = (stateName: string) => {
     // Open Wikipedia page in new tab
     const wikiUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(stateName)}`
     window.open(wikiUrl, '_blank', 'noopener,noreferrer')
   }
 
   // Create custom states configuration for the map
-  const customStates = {}
+  const customStates: CustomStatesMap = {}
   Object.keys(statesData).forEach(stateCode => {
     customStates[stateCode] = {
       fill: selectedState === stateCode ? '#b22234' : '#3c3b6e',
@@ -37,8 +38,6 @@ function App() {
       <div className="map-section">
         <USAMap
           customStates={customStates}
-          width="1000"
-          height="600"
         />
       </div>
 

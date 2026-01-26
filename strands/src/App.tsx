@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react'
 import Home from './components/Home'
 import Play from './components/Play'
 import { loadConfig, getGameData } from './utils/configLoader'
+import type { StrandsConfig, GameData } from './types'
 import './App.css'
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
-  const [config, setConfig] = useState(null);
-  const [gameData, setGameData] = useState(null);
+  const [config, setConfig] = useState<StrandsConfig | null>(null);
+  const [gameData, setGameData] = useState<GameData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -2,7 +2,17 @@ import { defineConfig, devices } from '@playwright/test';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
+ *
+ * To test against the deployed S3 site:
+ *   BASE_URL=http://mojodojocasahouse-of-apps-67ba00d8ab4c-bucket.s3-website-us-east-1.amazonaws.com npm run test:smoke
+ *
+ * To test locally:
+ *   npm run test:smoke
  */
+
+const isRemote = !!process.env.BASE_URL;
+const baseURL = process.env.BASE_URL || 'http://localhost:8000';
+
 export default defineConfig({
   testDir: './playwright/tests',
 
@@ -24,7 +34,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:8000',
+    baseURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -58,8 +68,8 @@ export default defineConfig({
     },
   ],
 
-  /* Run your local dev server before starting the tests */
-  webServer: {
+  /* Run your local dev server before starting the tests (only when testing locally) */
+  webServer: isRemote ? undefined : {
     command: 'npx http-server . -p 8000 -c-1',
     url: 'http://localhost:8000',
     reuseExistingServer: !process.env.CI,

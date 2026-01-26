@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from "react";
+import type { StrandsConfig, GameData, FoundWord, PopupData } from "../types";
 import "./LetterGrid.css";
 
-const LetterGrid = ({
+interface LetterGridProps {
+  setHintCount: React.Dispatch<React.SetStateAction<number>>;
+  setWordsFound: React.Dispatch<React.SetStateAction<number>>;
+  showHint: boolean;
+  setShowHint: React.Dispatch<React.SetStateAction<boolean>>;
+  setStr: React.Dispatch<React.SetStateAction<string>>;
+  gameData: GameData;
+  config: StrandsConfig;
+}
+
+const LetterGrid: React.FC<LetterGridProps> = ({
   setHintCount,
   setWordsFound,
   showHint,
@@ -19,16 +30,16 @@ const LetterGrid = ({
   const clearButtonText = feedbackConfig.clearButtonText || "Clear";
   const messageDuration = feedbackConfig.messageDuration || 2;
   const [selectedLetters, setSelectedLetters] = useState("");
-  const [selectedIds, setSelectedIds] = useState([]);
-  const [foundWords, setFoundWords] = useState([]); // Array of {wordIndex, coordinates}
-  const [selectRedIds, setSelectedRedIds] = useState([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [foundWords, setFoundWords] = useState<FoundWord[]>([]);
+  const [selectRedIds, setSelectedRedIds] = useState<string[]>([]);
   const [hintsUsed, setHintsUsed] = useState(0);
-  const [wordList, setWordList] = useState([]);
+  const [wordList, setWordList] = useState<string[]>([]);
   const [isSelecting, setIsSelecting] = useState(false);
   const [showWordPopup, setShowWordPopup] = useState(false);
-  const [popupData, setPopupData] = useState({ word: "", wordIndex: null, isSpangram: false, count: 0, total: 7 });
+  const [popupData, setPopupData] = useState<PopupData>({ word: "", wordIndex: null, isSpangram: false, count: 0, total: 7 });
 
-  const timer = (seconds, callback) => {
+  const timer = (seconds: number, callback: () => void) => {
     setTimeout(callback, seconds * 1000);
   };
 
@@ -71,11 +82,11 @@ const LetterGrid = ({
       });
   }, []);
 
-  const addSelectedLetters = (letter, rowIndex, colIndex) => {
+  const addSelectedLetters = (letter: string, rowIndex: number, colIndex: number) => {
     const newId = `${rowIndex}-${colIndex}`;
     const currentLength = selectedLetters.length;
 
-    const isAdjacent = (lastId, newId) => {
+    const isAdjacent = (lastId: string, newId: string) => {
       const [lastRow, lastCol] = lastId.split("-").map(Number);
       const [newRow, newCol] = newId.split("-").map(Number);
       if (
@@ -92,7 +103,7 @@ const LetterGrid = ({
     const lastSelectedId =
       selectedIds.length > 0 ? selectedIds[selectedIds.length - 1] : null;
 
-    const updateSelections = (reset) => {
+    const updateSelections = (reset: boolean) => {
       setSelectedIds(reset ? [newId] : [...selectedIds, newId]);
       setSelectedLetters(
         reset ? letter : (prevLetters) => prevLetters + letter
@@ -108,7 +119,7 @@ const LetterGrid = ({
     }
   };
 
-  function isArrayEqualUnordered(a, b) {
+  function isArrayEqualUnordered(a: string[], b: string[]) {
     const sortedA = a.slice().sort();
     const sortedB = b.slice().sort();
     return (
@@ -117,19 +128,19 @@ const LetterGrid = ({
     );
   }
 
-  function checkArrayMatch(arrA, arrB) {
+  function checkArrayMatch(arrA: string[], arrB: string[] | string[][]) {
     if (Array.isArray(arrB[0])) {
-      return arrB.some((subArray) => {
+      return (arrB as string[][]).some((subArray) => {
         return isArrayEqualUnordered(arrA, subArray);
       });
     } else {
-      return isArrayEqualUnordered(arrA, arrB);
+      return isArrayEqualUnordered(arrA, arrB as string[]);
     }
   }
 
   const checkWordList = () => {
     const currentLength = selectedLetters.length;
-    const clearSelectedLetters = (delay) => {
+    const clearSelectedLetters = (delay: number) => {
       timer(delay, () => {
         setSelectedLetters("");
         setSelectedIds([]);
@@ -179,7 +190,7 @@ const LetterGrid = ({
     }
   };
 
-  const handleIsSelecting = (letter, rowIndex, colIndex) => {
+  const handleIsSelecting = (letter: string, rowIndex: number, colIndex: number) => {
     const newId = `${rowIndex}-${colIndex}`;
     const isFoundCell = foundWords.some(word => word.coordinates.includes(newId)) || selectRedIds.includes(newId);
 
@@ -195,7 +206,7 @@ const LetterGrid = ({
     }
   };
 
-  const handleIsDragging = (letter, rowIndex, colIndex) => {
+  const handleIsDragging = (letter: string, rowIndex: number, colIndex: number) => {
     const newId = `${rowIndex}-${colIndex}`;
     const isFoundCell = foundWords.some(word => word.coordinates.includes(newId)) || selectRedIds.includes(newId);
 
@@ -210,7 +221,7 @@ const LetterGrid = ({
     setIsSelecting(false);
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = (e: React.TouchEvent) => {
     e.preventDefault();
     const touch = e.touches[0];
 
@@ -218,7 +229,7 @@ const LetterGrid = ({
       const targetElement = document.elementFromPoint(
         touch.clientX,
         touch.clientY
-      );
+      ) as HTMLElement | null;
 
       if (targetElement && targetElement.tagName === "BUTTON") {
         const letter = targetElement.dataset.letter || "";
@@ -230,7 +241,7 @@ const LetterGrid = ({
     }
   };
 
-  const handleTouchStart = (e, letter, rowIndex, colIndex) => {
+  const handleTouchStart = (_e: React.TouchEvent, letter: string, rowIndex: number, colIndex: number) => {
     handleIsSelecting(letter, rowIndex, colIndex);
   };
 
