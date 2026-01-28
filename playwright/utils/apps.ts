@@ -100,4 +100,16 @@ export const apps: AppConfig[] = [
       { selector: 'button, .task, [class*="timeline"]', description: 'Interactive elements', checkVisible: true },
     ],
   },
+  {
+    name: 'Todo List',
+    cardClass: 'todo',
+    localPath: '/todo/dist/',
+    remotePath: '/todo/',
+    hasRoot: true,
+    visualAssertions: [
+      { selector: 'h1', description: 'Hello World heading', checkVisible: true, checkText: 'Hello World' },
+      { selector: 'p', description: 'iPhone design text', checkVisible: true, checkText: 'Designed from an iPhone' },
+      { selector: '.back-to-home__button', description: 'Back to home button', checkVisible: true },
+    ],
+  },
 ];
