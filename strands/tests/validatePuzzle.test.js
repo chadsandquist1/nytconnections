@@ -57,7 +57,7 @@ describe('Strands Puzzle Validation', () => {
     it('should have grid array', () => {
       expect(config.puzzle.grid).toBeInstanceOf(Array);
       expect(config.puzzle.grid.length).toBe(8);
-      config.puzzle.grid.forEach(row => {
+      config.puzzle.grid.forEach((row) => {
         expect(row.length).toBe(6);
       });
     });
@@ -91,7 +91,7 @@ describe('Strands Puzzle Validation', () => {
     });
 
     it('should spell NORTHERN correctly', () => {
-      const letters = config.puzzle.spangram.coordinates.map(coord => {
+      const letters = config.puzzle.spangram.coordinates.map((coord) => {
         const [row, col] = coord.split('-').map(Number);
         return config.puzzle.grid[row][col];
       });
@@ -128,12 +128,12 @@ describe('Strands Puzzle Validation', () => {
     });
 
     it('should have all expected theme words', () => {
-      expectedWords.forEach(word => {
+      expectedWords.forEach((word) => {
         expect(config.puzzle.words[word]).toBeDefined();
       });
     });
 
-    expectedWords.forEach(word => {
+    expectedWords.forEach((word) => {
       describe(`${word}`, () => {
         it('should have correct length', () => {
           const expectedLength = word.length;
@@ -141,7 +141,7 @@ describe('Strands Puzzle Validation', () => {
         });
 
         it('should spell correctly from grid', () => {
-          const letters = config.puzzle.words[word].coordinates.map(coord => {
+          const letters = config.puzzle.words[word].coordinates.map((coord) => {
             const [row, col] = coord.split('-').map(Number);
             return config.puzzle.grid[row][col];
           });
@@ -164,7 +164,7 @@ describe('Strands Puzzle Validation', () => {
       allCoords.push(...config.puzzle.spangram.coordinates);
 
       // Add all word coordinates
-      Object.values(config.puzzle.words).forEach(word => {
+      Object.values(config.puzzle.words).forEach((word) => {
         allCoords.push(...word.coordinates);
       });
 
@@ -178,7 +178,7 @@ describe('Strands Puzzle Validation', () => {
       allCoords.push(...config.puzzle.spangram.coordinates);
 
       // Add all word coordinates
-      Object.values(config.puzzle.words).forEach(word => {
+      Object.values(config.puzzle.words).forEach((word) => {
         allCoords.push(...word.coordinates);
       });
 
@@ -194,17 +194,17 @@ describe('Strands Puzzle Validation', () => {
       allCoords.push(...config.puzzle.spangram.coordinates);
 
       // Add all word coordinates
-      Object.values(config.puzzle.words).forEach(word => {
+      Object.values(config.puzzle.words).forEach((word) => {
         allCoords.push(...word.coordinates);
       });
 
       // Count occurrences
-      allCoords.forEach(coord => {
+      allCoords.forEach((coord) => {
         coordCounts[coord] = (coordCounts[coord] || 0) + 1;
       });
 
       // Check for duplicates
-      const duplicates = Object.entries(coordCounts).filter(([coord, count]) => count > 1);
+      const duplicates = Object.entries(coordCounts).filter(([_coord, count]) => count > 1);
 
       expect(duplicates).toEqual([]);
     });
@@ -212,8 +212,8 @@ describe('Strands Puzzle Validation', () => {
 
   describe('Grid Integrity', () => {
     it('should have no undefined or null cells', () => {
-      config.puzzle.grid.forEach((row, rowIndex) => {
-        row.forEach((cell, colIndex) => {
+      config.puzzle.grid.forEach((row, _rowIndex) => {
+        row.forEach((cell, _colIndex) => {
           expect(cell).toBeDefined();
           expect(cell).not.toBeNull();
           expect(typeof cell).toBe('string');
@@ -223,8 +223,8 @@ describe('Strands Puzzle Validation', () => {
     });
 
     it('should have only uppercase letters', () => {
-      config.puzzle.grid.forEach((row, rowIndex) => {
-        row.forEach((cell, colIndex) => {
+      config.puzzle.grid.forEach((row, _rowIndex) => {
+        row.forEach((cell, _colIndex) => {
           expect(cell).toMatch(/^[A-Z]$/);
         });
       });
@@ -235,10 +235,10 @@ describe('Strands Puzzle Validation', () => {
     it('should have valid coordinate format (row-col)', () => {
       const allCoords = [
         ...config.puzzle.spangram.coordinates,
-        ...Object.values(config.puzzle.words).flatMap(word => word.coordinates)
+        ...Object.values(config.puzzle.words).flatMap((word) => word.coordinates),
       ];
 
-      allCoords.forEach(coord => {
+      allCoords.forEach((coord) => {
         expect(coord).toMatch(/^\d+-\d+$/);
         const [row, col] = coord.split('-').map(Number);
         expect(row).toBeGreaterThanOrEqual(0);

@@ -28,7 +28,7 @@ test.describe('NYT Connections Game - Game Flow', () => {
   test('should select and deselect words', async ({ page }) => {
     // Get the first word cell
     const firstWord = page.locator('.word-cell').first();
-    const firstWordText = await firstWord.textContent();
+    const _firstWordText = await firstWord.textContent();
 
     // Click to select
     await firstWord.click();

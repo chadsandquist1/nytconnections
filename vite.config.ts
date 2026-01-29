@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,19 +11,25 @@ export default defineConfig({
     },
   },
   server: {
-    port: 8000
+    port: 8000,
   },
   build: {
     rollupOptions: {
       input: {
-        game: resolve(__dirname, 'game.html')
-      }
-    }
+        game: resolve(__dirname, 'game.html'),
+      },
+    },
   },
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     css: true,
-  }
-})
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/playwright/**',
+      '**/connections/playwright/**',
+    ],
+  },
+});

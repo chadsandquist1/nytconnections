@@ -75,8 +75,8 @@ function App() {
         if (themeResponse.ok) {
           theme = await themeResponse.json();
         }
-      } catch (err) {
-        console.log('No theme.json found, using CSV theme');
+      } catch (_err) {
+        // No theme.json found, using CSV theme
       }
 
       // Load messages from messages.json if it exists
@@ -91,15 +91,15 @@ function App() {
           if (messages.title) title = messages.title;
           if (messages.instructions) instructions = messages.instructions;
         }
-      } catch (err) {
-        console.log('No messages.json found, using CSV messages');
+      } catch (_err) {
+        // No messages.json found, using CSV messages
       }
 
       // Flatten all words and shuffle them
-      const allWords = puzzleData.categories.flatMap(cat => cat.words);
+      const allWords = puzzleData.categories.flatMap((cat) => cat.words);
       const shuffledWords = shuffleArray(allWords);
 
-      setGameState(prev => ({
+      setGameState((prev) => ({
         ...prev,
         categories: puzzleData.categories,
         wordBank: shuffledWords,
@@ -114,20 +114,20 @@ function App() {
         gameWon: false,
       }));
       setLoading(false);
-    } catch (err) {
+    } catch (_err) {
       setError('Failed to load puzzle. Make sure puzzle.csv exists in the public folder.');
       setLoading(false);
     }
   };
 
   const toggleWordSelection = (word: string) => {
-    setGameState(prev => {
+    setGameState((prev) => {
       const isSelected = prev.selectedWords.includes(word);
 
       if (isSelected) {
         return {
           ...prev,
-          selectedWords: prev.selectedWords.filter(w => w !== word),
+          selectedWords: prev.selectedWords.filter((w) => w !== word),
         };
       } else if (prev.selectedWords.length < 4) {
         return {
@@ -141,14 +141,14 @@ function App() {
   };
 
   const handleShuffle = () => {
-    setGameState(prev => ({
+    setGameState((prev) => ({
       ...prev,
       wordBank: shuffleArray(prev.wordBank),
     }));
   };
 
   const handleDeselect = () => {
-    setGameState(prev => ({
+    setGameState((prev) => ({
       ...prev,
       selectedWords: [],
     }));
@@ -160,7 +160,7 @@ function App() {
     if (selectedWords.length !== 4) return;
 
     // Check if selection matches any unsolved category
-    const matchedCategory = categories.find(cat => {
+    const matchedCategory = categories.find((cat) => {
       if (solvedCategories.includes(cat)) return false;
 
       const categoryWords = cat.words.sort();
@@ -173,13 +173,13 @@ function App() {
       // Correct guess!
       const newSolvedCategories = [...solvedCategories, matchedCategory];
       const remainingWords = gameState.wordBank.filter(
-        word => !matchedCategory.words.includes(word)
+        (word) => !matchedCategory.words.includes(word)
       );
 
       setFeedback('Correct! 🎉');
       setTimeout(() => setFeedback(null), 2000);
 
-      setGameState(prev => ({
+      setGameState((prev) => ({
         ...prev,
         solvedCategories: newSolvedCategories,
         wordBank: remainingWords,
@@ -193,7 +193,7 @@ function App() {
       setFeedback('Not quite... Try again!');
       setTimeout(() => setFeedback(null), 2000);
 
-      setGameState(prev => ({
+      setGameState((prev) => ({
         ...prev,
         mistakes: newMistakes,
         selectedWords: [],
@@ -234,7 +234,7 @@ function App() {
   }
 
   const remainingWords = gameState.wordBank.filter(
-    word => !gameState.solvedCategories.some(cat => cat.words.includes(word))
+    (word) => !gameState.solvedCategories.some((cat) => cat.words.includes(word))
   );
 
   return (
