@@ -26,7 +26,11 @@ export const apps: AppConfig[] = [
       { selector: 'h1', description: 'Title heading', checkVisible: true },
       { selector: '.word-grid', description: 'Word grid container', checkVisible: true },
       { selector: '.word-cell', description: 'Word cells', checkCount: 16 },
-      { selector: '.game-controls button', description: 'Game control buttons', checkVisible: true },
+      {
+        selector: '.game-controls button',
+        description: 'Game control buttons',
+        checkVisible: true,
+      },
     ],
   },
   {
@@ -36,7 +40,11 @@ export const apps: AppConfig[] = [
     remotePath: '/strands/',
     hasRoot: true,
     visualAssertions: [
-      { selector: '.home-container, .play-container, #root', description: 'Main container', checkVisible: true },
+      {
+        selector: '.home-container, .play-container, #root',
+        description: 'Main container',
+        checkVisible: true,
+      },
       { selector: 'button', description: 'Buttons present', checkVisible: true },
     ],
   },
@@ -86,7 +94,11 @@ export const apps: AppConfig[] = [
     hasRoot: false,
     visualAssertions: [
       { selector: 'h1', description: 'Page heading', checkVisible: true },
-      { selector: '.workout-card, .week-card, [class*="workout"]', description: 'Workout content', checkVisible: true },
+      {
+        selector: '.workout-card, .week-card, [class*="workout"]',
+        description: 'Workout content',
+        checkVisible: true,
+      },
     ],
   },
   {
@@ -97,7 +109,11 @@ export const apps: AppConfig[] = [
     hasRoot: false,
     visualAssertions: [
       { selector: 'h1', description: 'Page heading', checkVisible: true },
-      { selector: 'button, .task, [class*="timeline"]', description: 'Interactive elements', checkVisible: true },
+      {
+        selector: 'button, .task, [class*="timeline"]',
+        description: 'Interactive elements',
+        checkVisible: true,
+      },
     ],
   },
   {
@@ -107,9 +123,15 @@ export const apps: AppConfig[] = [
     remotePath: '/todo/',
     hasRoot: true,
     visualAssertions: [
-      { selector: 'h1', description: 'Hello World heading', checkVisible: true, checkText: 'Hello World' },
-      { selector: 'p', description: 'iPhone design text', checkVisible: true, checkText: 'Designed from an iPhone' },
-      { selector: '.back-to-home__button', description: 'Back to home button', checkVisible: true },
+      {
+        selector: 'h1.todo-title',
+        description: 'TODO App heading',
+        checkVisible: true,
+        checkText: 'TODO App',
+      },
+      { selector: '.todo-input', description: 'Task input field', checkVisible: true },
+      { selector: '.add-button', description: 'Add button', checkVisible: true, checkText: 'Add' },
+      { selector: '.back-to-home__button', description: 'Navigation buttons', checkCount: 2 },
     ],
   },
 ];

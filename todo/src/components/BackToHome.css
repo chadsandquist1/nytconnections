@@ -1,8 +1,26 @@
 .back-to-home {
+  display: flex;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.back-to-home--top-left {
   position: fixed;
   top: 16px;
   left: 16px;
-  z-index: 1000;
+}
+
+.back-to-home--top-right {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+}
+
+.back-to-home--bottom {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .back-to-home__button {
@@ -18,7 +36,9 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
